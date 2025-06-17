@@ -9,7 +9,7 @@ interface LabCardProps {
 
 function LabCard({ title, imageSrc, imageAlt, tags }: LabCardProps) {
     return (
-        <div className="bg-[#181C1C] rounded-2xl p-8 w-full max-w-[396px] h-[593px] flex flex-col justify-between shadow-lg">
+        <div className="bg-[#181C1C] rounded-2xl p-8 w-full max-w-[520px] h-[700px] flex flex-col justify-between shadow-lg">
             <div className="text-lg font-mono mb-2">{title}</div>
             <div className="flex-1 flex items-center justify-center">
                 <Image src={imageSrc} alt={imageAlt} width={120} height={120} className="object-contain" />

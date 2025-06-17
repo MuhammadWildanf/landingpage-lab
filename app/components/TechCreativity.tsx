@@ -109,7 +109,7 @@ export default function TechCreativity() {
     if (!categories.length) return null;
 
     return (
-        <section className="px-4 sm:px-8 lg:px-20 relative text-white font-mono" data-aos="fade-up">
+        <section className="px-4 sm:px-8 lg:px-20 relative text-white font-mono">
             <h2 className="text-center text-3xl sm:text-4xl font-medium tracking-widest mb-8 uppercase">
                 TECH CREATIVITY = <span className="ml-1 bg-gradient-to-r from-[#CED4D4] via-[#CBAB79] to-[#CD1DA6] bg-clip-text text-transparent">MAGIC</span>
             </h2>
@@ -145,7 +145,7 @@ export default function TechCreativity() {
 
                 {/* Image card */}
                 {filteredProducts.length > 0 ? (
-                    <div className="relative rounded-3xl overflow-hidden border border-white/20 shadow-xl w-full" style={{ boxShadow: '0 0 32px 0 #a259ff55' }}>
+                    <div className="relative rounded-3xl overflow-hidden border border-white/20 shadow-xl w-full bg-[#202020]" style={{ boxShadow: '0 0 32px 0 #a259ff55' }}>
                         <img
                             src={
                                 `https://api.imajiwa.id${filteredProducts[currentSlide].thumbnail_url ||
@@ -154,9 +154,9 @@ export default function TechCreativity() {
                                 '/assets/images/projects/default.jpg'
                             }
                             alt={filteredProducts[currentSlide].name}
-                            className="w-full h-[350px] object-cover"
+                            className="w-full h-[480px] sm:h-[520px] object-cover transition-all duration-500 ease-in-out"
                         />
-                        <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                        <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#202020] via-[#202020]/40 to-transparent">
                             <p className="text-xs text-purple-300 mb-1">{filteredProducts[currentSlide].category?.name || 'Project'}</p>
                             <p className="text-2xl font-bold text-white leading-tight mb-1">{filteredProducts[currentSlide].name}</p>
                             {/* Location: pakai field location jika ada, atau kosong */}
@@ -166,7 +166,7 @@ export default function TechCreativity() {
                         </div>
                     </div>
                 ) : (
-                    <div className="rounded-3xl border border-white/20 shadow-xl w-full h-[350px] flex items-center justify-center text-gray-400 bg-black/40">
+                    <div className="rounded-3xl border border-white/20 shadow-xl w-full h-[350px] flex items-center justify-center text-gray-400 bg-[#202020]">
                         No project for this category.
                     </div>
                 )}

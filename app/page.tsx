@@ -1,4 +1,7 @@
 import SplashCursor from "../blocks/Animations/SplashCursor/SplashCursor";
+import Particles from "../blocks/Backgrounds/Particles/Particles";
+
+import AOSInitializer from "./components/AOSInitializer";
 import Hero from "./components/Hero";
 import LabCards from "./components/LabCards";
 import About from "./components/About";
@@ -12,6 +15,10 @@ export default function Home() {
       <div className="fixed inset-0 -z-10 pointer-events-none">
         <SplashCursor />
       </div>
+      <div className="absolute inset-0 -z-10">
+        <Particles />
+      </div>
+      <AOSInitializer />
       <Hero />
       <LabCards />
       <About />

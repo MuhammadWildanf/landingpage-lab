@@ -40,7 +40,6 @@ export default function Navbar() {
                     <Link href="/" className="font-bold underline underline-offset-4">
                         Home
                     </Link>
-                    <Link href="/technical-support">Technical Sup<span className="hidden sm:inline">port</span></Link>
                     <Link href="/interactive">Interactive</Link>
                     <Link href="/get-in-touch">Get in Touch</Link>
                 </div>
