@@ -17,7 +17,12 @@ export default function Navbar() {
 
     return (
         <nav className="sticky top-4 z-50 px-4 md:px-8">
-            <div className="mx-auto flex items-center justify-between text-sm font-mono text-white px-6 py-2 md:py-3 rounded-full bg-gradient-to-r from-[#2F2F2F] to-[#4A4A4A] shadow-md">
+            <div
+                className={`mx-auto flex items-center justify-between text-sm font-mono text-white px-6 py-2 md:py-3 rounded-full shadow-md transition-all
+                ${isScrolled ? 'backdrop-blur-md' : 'bg-gradient-to-r from-[#2F2F2F] to-[#4A4A4A]'}
+                `}
+                style={isScrolled ? { backgroundColor: 'rgba(217,217,217,0.3)' } : {}}
+            >
 
                 {/* KIRI: Logo */}
                 <div className="flex items-center">
