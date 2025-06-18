@@ -90,6 +90,19 @@ export default function TechCreativity() {
         );
     };
 
+    // Function to check if media is video
+    const isVideo = (url: string): boolean => {
+        const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv'];
+        const lowerUrl = url.toLowerCase();
+        return videoExtensions.some(ext => lowerUrl.includes(ext));
+    };
+
+    // Function to get media URL
+    const getMediaUrl = (product: Product): string => {
+        const mediaUrl = product.thumbnail_url || product.media?.[0]?.url;
+        return mediaUrl ? `https://api.imajiwa.id${mediaUrl}` : '/assets/images/projects/default.jpg';
+    };
+
     if (loading) {
         return (
             <section className="mt-20 sm:mt-24 px-4 sm:px-8 lg:px-20 relative text-white">
@@ -132,41 +145,61 @@ export default function TechCreativity() {
             </div>
 
             {/* Carousel */}
-            <div className="relative max-w-4xl mx-auto flex items-center justify-center min-h-[420px]">
+            <div className="relative max-w-4xl mx-auto flex items-center justify-center min-h-[300px] sm:min-h-[400px] md:min-h-[420px]">
                 {/* Arrow Left */}
                 <button
                     onClick={handlePrevSlide}
-                    className="w-12 h-12 flex items-center justify-center rounded-full border border-white/40 bg-black/40 hover:bg-[#E9FF4E]/20 hover:border-[#E9FF4E] text-3xl absolute left-[-56px] top-1/2 -translate-y-1/2 z-10 transition-all"
+                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full border border-white/40 bg-black/40 hover:bg-[#E9FF4E]/20 hover:border-[#E9FF4E] text-xl sm:text-2xl md:text-3xl absolute left-2 sm:left-4 md:left-[-56px] top-1/2 -translate-y-1/2 z-10 transition-all"
                     aria-label="Previous"
                     disabled={filteredProducts.length === 0}
                 >
                     &#8592;
                 </button>
 
-                {/* Image card */}
+                {/* Media card */}
                 {filteredProducts.length > 0 ? (
-                    <div className="relative rounded-3xl overflow-hidden border border-white/20 shadow-xl w-full bg-[#202020]" style={{ boxShadow: '0 0 32px 0 #a259ff55' }}>
-                        <img
-                            src={
-                                `https://api.imajiwa.id${filteredProducts[currentSlide].thumbnail_url ||
-                                filteredProducts[currentSlide].media?.[0]?.url
-                                }` ||
-                                '/assets/images/projects/default.jpg'
+                    <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-xl w-full bg-[#202020]" style={{ boxShadow: '0 0 32px 0 #a259ff55' }}>
+                        {(() => {
+                            const currentProduct = filteredProducts[currentSlide];
+                            const mediaUrl = getMediaUrl(currentProduct);
+                            const isVideoFile = isVideo(mediaUrl);
+
+                            if (isVideoFile) {
+                                return (
+                                    <video
+                                        src={mediaUrl}
+                                        className="w-full h-[300px] sm:h-[400px] md:h-[480px] lg:h-[520px] object-cover transition-all duration-500 ease-in-out"
+                                        autoPlay
+                                        muted
+                                        loop
+                                        playsInline
+                                        controls={false}
+                                        preload="metadata"
+                                    />
+                                );
+                            } else {
+                                return (
+                                    <img
+                                        src={mediaUrl}
+                                        alt={currentProduct.name}
+                                        className="w-full h-[300px] sm:h-[400px] md:h-[480px] lg:h-[520px] object-cover transition-all duration-500 ease-in-out"
+                                        loading="lazy"
+                                    />
+                                );
                             }
-                            alt={filteredProducts[currentSlide].name}
-                            className="w-full h-[480px] sm:h-[520px] object-cover transition-all duration-500 ease-in-out"
-                        />
-                        <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#202020] via-[#202020]/40 to-transparent">
+                        })()}
+
+                        <div className="absolute bottom-0 left-0 w-full p-4 sm:p-5 md:p-6 bg-gradient-to-t from-[#202020] via-[#202020]/40 to-transparent">
                             <p className="text-xs text-purple-300 mb-1">{filteredProducts[currentSlide].category?.name || 'Project'}</p>
-                            <p className="text-2xl font-bold text-white leading-tight mb-1">{filteredProducts[currentSlide].name}</p>
+                            <p className="text-lg sm:text-xl md:text-2xl font-bold text-white leading-tight mb-1">{filteredProducts[currentSlide].name}</p>
                             {/* Location: pakai field location jika ada, atau kosong */}
                             {filteredProducts[currentSlide].location && (
-                                <p className="text-base text-white mb-1 font-normal">{filteredProducts[currentSlide].location}</p>
+                                <p className="text-sm sm:text-base text-white mb-1 font-normal">{filteredProducts[currentSlide].location}</p>
                             )}
                         </div>
                     </div>
                 ) : (
-                    <div className="rounded-3xl border border-white/20 shadow-xl w-full h-[350px] flex items-center justify-center text-gray-400 bg-[#202020]">
+                    <div className="rounded-2xl sm:rounded-3xl border border-white/20 shadow-xl w-full h-[250px] sm:h-[300px] md:h-[350px] flex items-center justify-center text-gray-400 bg-[#202020]">
                         No project for this category.
                     </div>
                 )}
@@ -174,7 +207,7 @@ export default function TechCreativity() {
                 {/* Arrow Right */}
                 <button
                     onClick={handleNextSlide}
-                    className="w-12 h-12 flex items-center justify-center rounded-full border border-white/40 bg-black/40 hover:bg-[#E9FF4E]/20 hover:border-[#E9FF4E] text-3xl absolute right-[-56px] top-1/2 -translate-y-1/2 z-10 transition-all"
+                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full border border-white/40 bg-black/40 hover:bg-[#E9FF4E]/20 hover:border-[#E9FF4E] text-xl sm:text-2xl md:text-3xl absolute right-2 sm:right-4 md:right-[-56px] top-1/2 -translate-y-1/2 z-10 transition-all"
                     aria-label="Next"
                     disabled={filteredProducts.length === 0}
                 >

@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function Hero() {
     return (
-        <div className="relative w-full min-h-screen flex flex-col justify-center items-center" data-aos="fade-up">
-            
+        <div className="relative w-full min-h-[60vh] flex flex-col justify-center items-center" data-aos="fade-up">
+
 
             {/* Konten utama */}
             <main className="flex flex-col sm:flex-row items-center sm:items-end justify-between gap-20 sm:gap-24 w-full mx-auto px-4 sm:px-0 transform -translate-y-8">
