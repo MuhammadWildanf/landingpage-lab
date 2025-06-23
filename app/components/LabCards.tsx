@@ -9,13 +9,14 @@ interface LabCardProps {
     tags: string[];
     backMediaSrc?: string;
     backMediaAlt?: string;
+    cardClassName?: string;
 }
 
 function isVideo(src: string) {
     return /\.(mp4|webm|ogg)$/i.test(src);
 }
 
-function LabCard({ title, imageSrc, imageAlt, tags, backMediaSrc, backMediaAlt }: LabCardProps) {
+function LabCard({ title, imageSrc, imageAlt, tags, backMediaSrc, backMediaAlt, cardClassName }: LabCardProps) {
     const [isFlipped, setIsFlipped] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
