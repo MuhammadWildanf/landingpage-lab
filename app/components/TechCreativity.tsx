@@ -41,7 +41,7 @@ export default function TechCreativity() {
             setLoading(true);
             try {
                 const [catRes, prodRes] = await Promise.all([
-                    fetch('https://api.imajiwa.id/api/category'),
+                    fetch('https://api.imajiwa.id/api/sub-category'),
                     fetch('https://api.imajiwa.id/public/products'),
                 ]);
                 if (!catRes.ok || !prodRes.ok) throw new Error('Failed to fetch data');
@@ -99,8 +99,17 @@ export default function TechCreativity() {
 
     // Function to get media URL
     const getMediaUrl = (product: Product): string => {
-        const mediaUrl = product.thumbnail_url || product.media?.[0]?.url;
-        return mediaUrl ? `https://api.imajiwa.id${mediaUrl}` : '/assets/images/projects/default.jpg';
+        let mediaUrl = product.thumbnail_url;
+        if (!mediaUrl && product.media && product.media[0]?.url) {
+            mediaUrl = product.media[0].url;
+        }
+        if (!mediaUrl) return '/assets/images/projects/default.jpg';
+        // Jika sudah absolut, return langsung
+        if (mediaUrl.startsWith('http://') || mediaUrl.startsWith('https://')) {
+            return mediaUrl;
+        }
+        // Jika relative, tambahkan prefix
+        return `https://api.imajiwa.id${mediaUrl}`;
     };
 
     if (loading) {

@@ -74,19 +74,19 @@ export default function Navbar() {
                         >
                             INTERACTIVE
                         </Link>
-                        <Link
+                        {/* <Link
                             href="/get-in-touch"
                             className={`${isActive('/get-in-touch') ? 'font-bold underline underline-offset-4' : ''} hover:text-gray-300 transition-colors`}
                         >
                             GET IN TOUCH
-                        </Link>
+                        </Link> */}
                     </div>
 
                     {/* KANAN: Desktop Button & Mobile Menu Button */}
                     <div className="flex items-center">
                         {/* Desktop: DISCOVER MAGIC Button */}
                         <div className="hidden md:block">
-                            <button className="border border-white rounded-full px-4 py-1.5 text-xs flex items-center gap-2 hover:bg-white hover:text-black transition-all">
+                            <Link href="/#tech-creativity" className="border border-white rounded-full px-4 py-1.5 text-xs flex items-center gap-2 hover:bg-white hover:text-black transition-all">
                                 DISCOVER MAGIC
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@ export default function Navbar() {
                                         d="M9 5l7 7-7 7"
                                     />
                                 </svg>
-                            </button>
+                            </Link>
                         </div>
 
                         {/* Mobile: Hamburger Menu Button */}
@@ -167,13 +167,13 @@ export default function Navbar() {
                                 >
                                     INTERACTIVE
                                 </Link>
-                                <Link
+                                {/* <Link
                                     href="/get-in-touch"
                                     className={`text-2xl tracking-widest uppercase hover:text-gray-300 transition-colors ${isActive('/get-in-touch') ? 'font-bold underline underline-offset-4' : ''}`}
                                     onClick={closeMobileMenu}
                                 >
                                     GET IN TOUCH
-                                </Link>
+                                </Link> */}
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
-import SplashCursor from "../blocks/Animations/SplashCursor/SplashCursor";
+// import SplashCursor from "../blocks/Animations/SplashCursor/SplashCursor";
 import Particles from "../blocks/Backgrounds/Particles/Particles";
+import CanvasCursor from './components/CanvasCursor';
 
 import AOSInitializer from "./components/AOSInitializer";
 import Hero from "./components/Hero";
@@ -12,9 +13,10 @@ import ContactSection from "./components/ContactSection";
 export default function Home() {
   return (
     <div className="relative text-white font-mono px-4 sm:px-6 md:px-20 pt-16 pb-12 space-y-40">
-      <div className="fixed inset-0 -z-10 pointer-events-none">
+      {/*  <div className="fixed inset-0 -z-10 pointer-events-none">
         <SplashCursor />
-      </div>
+      </div> */}
+        <CanvasCursor />
       <div className="absolute inset-0 -z-10">
         <Particles />
       </div>
@@ -22,7 +24,9 @@ export default function Home() {
       <Hero />
       <LabCards />
       <About />
-      <TechCreativity />
+      <div id="tech-creativity">
+        <TechCreativity />
+      </div>
       <ClientLogos />
       <ContactSection />
     </div>
