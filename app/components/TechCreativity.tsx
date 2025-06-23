@@ -131,7 +131,7 @@ export default function TechCreativity() {
     if (!categories.length) return null;
 
     return (
-        <section className="px-4 sm:px-8 lg:px-20 relative text-white font-mono">
+        <section className="px-4 sm:px-8 lg:px-20 relative text-white font-mono mb-12 sm:mb-20 md:mb-32">
             <h2 className="text-center text-3xl sm:text-4xl font-medium tracking-widest mb-8 uppercase">
                 TECH CREATIVITY = <span className="ml-1 bg-gradient-to-r from-[#CED4D4] via-[#CBAB79] to-[#CD1DA6] bg-clip-text text-transparent">MAGIC</span>
             </h2>

@@ -251,7 +251,7 @@ const Particles: React.FC<ParticlesProps> = ({
   ]);
 
   return (
-    <div ref={containerRef} className={`relative w-full h-full ${className}`} />
+    <div ref={containerRef} className={`fixed inset-0 w-screen h-screen pointer-events-none z-[-10] ${className || ''}`} />
   );
 };
 

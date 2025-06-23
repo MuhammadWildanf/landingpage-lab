@@ -128,7 +128,7 @@ export default function LabCards() {
     ];
 
     return (
-        <section className="w-full flex justify-center items-center" data-aos="fade-up">
+        <section className="w-full flex justify-center items-center mb-12 sm:mb-20 md:mb-32" data-aos="fade-up">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 w-full max-w-6xl">
                 {cards.map((card, index) => (
                     <LabCard key={index} {...card} />

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function About() {
     return (
-        <section className="flex flex-col sm:flex-row items-start justify-between gap-2 sm:gap-4 px-4 sm:px-8" data-aos="fade-left">
+        <section className="flex flex-col sm:flex-row items-start justify-between gap-2 sm:gap-4 px-4 sm:px-8 mb-12 sm:mb-20 md:mb-32" data-aos="fade-left">
             {/* Gambar Tim */}
             <div className="w-full sm:w-2/4 relative">
                 <Image
