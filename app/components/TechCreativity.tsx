@@ -61,14 +61,10 @@ export default function TechCreativity() {
         fetchData();
     }, []);
 
-    // Filter products by active category
     const filteredProducts = activeCategory
         ? products.filter((p) => p.category_id === activeCategory)
         : [];
-    // Get active category object
-    const activeCategoryObj = categories.find((cat) => cat.id === activeCategory);
 
-    // Reset slide if activeCategory changes
     useEffect(() => {
         setCurrentSlide(0);
     }, [activeCategory]);
@@ -98,7 +94,6 @@ export default function TechCreativity() {
         return videoExtensions.some(ext => lowerUrl.includes(ext));
     };
 
-    // Function to get media URL
     const getMediaUrl = (product: Product): string => {
         let mediaUrl = product.thumbnail_url;
         if (!mediaUrl && product.media && product.media[0]?.url) {
@@ -140,7 +135,6 @@ export default function TechCreativity() {
             {/* Category Tabs */}
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 mb-8 sm:mb-12 text-sm sm:text-base tracking-widest uppercase font-mono">
                 {categories.map((category) => {
-                    const words = category.name.split(' ');
                     return (
                         <button
                             key={category.id}
@@ -178,7 +172,6 @@ export default function TechCreativity() {
 
             {/* Carousel */}
             <div className="relative w-full max-w-2xl sm:max-w-3xl md:max-w-4xl mx-auto flex items-center justify-center min-h-[220px] sm:min-h-[320px] md:min-h-[400px]">
-                {/* Arrow Left - di luar card, hanya tampil di sm ke atas */}
                 <button
                     onClick={handlePrevSlide}
                     className="hidden sm:flex absolute sm:-left-20 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full border border-white/40 bg-black/60 hover:bg-[#E9FF4E]/20 hover:border-[#E9FF4E] text-2xl shadow-md transition-all"
@@ -190,7 +183,6 @@ export default function TechCreativity() {
                     </svg>
                 </button>
 
-                {/* Media card */}
                 {filteredProducts.length > 0 ? (
                     <div
                         className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-xl w-full bg-[#202020]"
@@ -247,7 +239,6 @@ export default function TechCreativity() {
                         <div className="absolute bottom-0 left-0 w-full p-3 sm:p-4 md:p-5 bg-gradient-to-t from-[#202020] via-[#202020]/40 to-transparent">
                             <p className="text-xs sm:text-sm text-purple-300 mb-1">{filteredProducts[currentSlide].category?.name || 'Project'}</p>
                             <p className="text-base sm:text-lg md:text-xl font-bold text-white leading-tight mb-1">{filteredProducts[currentSlide].name}</p>
-                            {/* Location: pakai field location jika ada, atau kosong */}
                             {filteredProducts[currentSlide].location && (
                                 <p className="text-xs sm:text-sm text-white mb-1 font-normal">{filteredProducts[currentSlide].location}</p>
                             )}
@@ -259,7 +250,6 @@ export default function TechCreativity() {
                     </div>
                 )}
 
-                {/* Arrow Right - di luar card, hanya tampil di sm ke atas */}
                 <button
                     onClick={handleNextSlide}
                     className="hidden sm:flex absolute sm:-right-20 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full border border-white/40 bg-black/60 hover:bg-[#E9FF4E]/20 hover:border-[#E9FF4E] text-2xl shadow-md transition-all"
@@ -286,7 +276,6 @@ export default function TechCreativity() {
                 </div>
             )}
 
-            {/* Description with gradient border top */}
             <div className="relative mt-8 sm:mt-10 max-w-2xl mx-auto">
                 <div className="absolute left-1/2 -translate-x-1/2 -top-3 w-2/3 h-1 bg-gradient-to-r from-[#CED4D4] via-[#CBAB79] to-[#CD1DA6] rounded-full blur-sm opacity-80" />
                 <p className="text-center text-sm sm:text-base text-white font-mono leading-relaxed mt-4 sm:mt-6">

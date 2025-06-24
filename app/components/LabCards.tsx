@@ -3,20 +3,18 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 
 interface LabCardProps {
-    title: string;
     imageSrc: string;
     imageAlt: string;
     tags: string[];
     backMediaSrc?: string;
     backMediaAlt?: string;
-    cardClassName?: string;
 }
 
 function isVideo(src: string) {
     return /\.(mp4|webm|ogg)$/i.test(src);
 }
 
-function LabCard({ title, imageSrc, imageAlt, tags, backMediaSrc, backMediaAlt, cardClassName }: LabCardProps) {
+function LabCard({ imageSrc, imageAlt, tags, backMediaSrc, backMediaAlt }: LabCardProps) {
     const [isFlipped, setIsFlipped] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
@@ -42,12 +40,10 @@ function LabCard({ title, imageSrc, imageAlt, tags, backMediaSrc, backMediaAlt, 
         if (!isMobile) setIsFlipped(false);
     };
 
-    // Media element (image or video) for front (selalu imageSrc)
     const frontMedia = (
         <Image src={imageSrc} alt={imageAlt} width={120} height={120} className="object-contain w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32" />
     );
 
-    // Media element (image or video) for back (pakai backMediaSrc jika ada, fallback ke imageSrc)
     let backMedia = null;
     if (backMediaSrc) {
         backMedia = isVideo(backMediaSrc) ? (
@@ -79,7 +75,6 @@ function LabCard({ title, imageSrc, imageAlt, tags, backMediaSrc, backMediaAlt, 
             <div
                 className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${isFlipped ? "rotate-y-180" : ""}`}
             >
-                {/* Front */}
                 <div className="absolute inset-0 bg-[#181C1C] rounded-2xl p-4 sm:p-6 md:p-8 flex flex-col justify-between shadow-lg min-h-[520px] sm:min-h-[600px] md:min-h-[700px] backface-hidden">
                     <div className="flex-1 flex flex-col justify-center">
                         <div className="flex items-center justify-center h-[180px]">
@@ -94,10 +89,8 @@ function LabCard({ title, imageSrc, imageAlt, tags, backMediaSrc, backMediaAlt, 
                         ))}
                     </div>
                 </div>
-                {/* Back */}
                 <div className="absolute inset-0 bg-[#232323] rounded-2xl flex items-center justify-center min-h-[520px] sm:min-h-[600px] md:min-h-[700px] rotate-y-180 backface-hidden">
                     {backMedia}
-                    {/* Bisa tambahkan konten lain di sini */}
                 </div>
             </div>
         </div>
