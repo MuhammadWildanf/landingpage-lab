@@ -26,7 +26,7 @@ const clients = [
 
 export default function ClientLogos() {
     return (
-        <section className="w-full flex flex-col items-center justify-center px-2 sm:px-8 bg-transparent mb-12 sm:mb-20 md:mb-32" data-aos="fade-up">
+        <section className="w-full min-h-screen flex flex-col items-center justify-center px-2 sm:px-8 bg-transparent mb-24" data-aos="fade-up">
             <h2 className="text-3xl sm:text-4xl font-mono font-bold text-center mb-10 tracking-widest uppercase">
                 <span className="bg-gradient-to-r from-[#CED4D4] via-[#CBAB79] to-[#CD1DA6] bg-clip-text text-transparent">OUR CLIENT</span>
             </h2>

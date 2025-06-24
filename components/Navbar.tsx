@@ -35,15 +35,14 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="sticky top-4 z-50 px-4 md:px-8">
+            <nav className="sticky top-4 z-50 px-4 sm:px-8">
                 <div
-                    className={`mx-auto flex items-center justify-between text-sm font-mono text-white px-6 py-2 md:py-3 rounded-full shadow-md transition-all
+                    className={`w-full max-w-6xl mx-auto flex items-center justify-between gap-x-10 h-16 text-sm font-mono text-white rounded-full shadow-md transition-all px-6 sm:px-10
                     ${isScrolled ? 'backdrop-blur-md' : 'bg-gradient-to-r from-[#2F2F2F] to-[#4A4A4A]'}
                     `}
                     style={isScrolled ? { backgroundColor: 'rgba(217,217,217,0.3)' } : {}}
                 >
 
-                    {/* KIRI: Logo */}
                     <div className="flex items-center">
                         <Image
                             src="/assets/images/logo.png"
@@ -54,7 +53,6 @@ export default function Navbar() {
                         />
                     </div>
 
-                    {/* TENGAH: Navigation - Desktop */}
                     <div className="hidden md:flex space-x-8 items-center text-xs tracking-widest uppercase">
                         <Link
                             href="/"
@@ -82,7 +80,6 @@ export default function Navbar() {
                         </Link> */}
                     </div>
 
-                    {/* KANAN: Desktop Button & Mobile Menu Button */}
                     <div className="flex items-center">
                         {/* Desktop: DISCOVER MAGIC Button */}
                         <div className="hidden md:block">
@@ -120,7 +117,6 @@ export default function Navbar() {
                 </div>
             </nav>
 
-            {/* Mobile Menu Overlay */}
             {isMobileMenuOpen && (
                 <div className="fixed inset-0 z-40 md:hidden">
                     {/* Backdrop */}

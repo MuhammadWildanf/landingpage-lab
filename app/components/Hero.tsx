@@ -1,17 +1,25 @@
+"use client";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Hero() {
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
-        <div className="relative w-full flex flex-col justify-center items-center py-12 sm:py-20 md:py-28" data-aos="fade-up">
+        <div className="relative w-full min-h-screen flex flex-col justify-center items-center" data-aos="fade-up">
             <main className="flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-16 w-full max-w-6xl mx-auto px-4 sm:px-0">
 
                 {/* Logo kiri */}
-                <div className="flex-shrink-0">
+                <div
+                    className="flex-shrink-0 cursor-pointer"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                >
                     <Image
-                        src="/assets/images/logo-hero.png"
+                        src={isHovered ? "/assets/imajiwalab_logo_glitch_2.gif" : "/assets/images/logohero.png"}
                         alt="IMAJIWA LAB"
-                        width={600}
-                        height={300}
+                        width={800}
+                        height={400}
                         className="h-auto"
                         priority
                     />

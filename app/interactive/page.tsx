@@ -62,65 +62,88 @@ export default function Interactive() {
                 </h1>
             </div>
             {/* Container utama */}
-            <div className="w-full max-w-6xl mx-auto rounded-3xl bg-[#232323] border border-white/20 shadow-xl p-4 sm:p-8 mb-16 mx-2">
+            <div className="w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-6xl mx-2 sm:mx-auto rounded-3xl bg-[#232323] border border-white/20 shadow-xl px-2 sm:px-4 md:px-8 pt-8 pb-16">
+
                 {/* Tab Kategori */}
                 <div className="flex justify-center mb-10">
-                    <div className="flex gap-2 bg-[#181C1C] rounded-full px-2 py-1 shadow overflow-x-auto whitespace-nowrap">
-                        {categories.map(cat => (
+                    <div className="flex gap-2 bg-[#181C1C] rounded-full px-2 py-1 shadow overflow-x-auto max-w-full scrollbar-thin scrollbar-thumb-[#CBAB79]/40 scrollbar-track-transparent">
+                        <button
+                            className={`px-6 py-2 rounded-full font-semibold transition text-sm md:text-base whitespace-nowrap ${selectedCat === null
+                                ? "bg-[#CBAB79] text-white font-bold"
+                                : "bg-transparent text-white hover:bg-[#333]"
+                                }`}
+                            onClick={() => setSelectedCat(null)}
+                        >
+                            All Project
+                        </button>
+
+                        {categories.map((cat) => (
                             <button
                                 key={cat.id}
-                                className={`px-6 py-2 rounded-full font-semibold transition text-base min-w-max
-            ${selectedCat === cat.id
-                                        ? "bg-[#888] text-white font-bold"
-                                        : "bg-transparent text-white hover:bg-[#333]"
+                                className={`px-6 py-2 rounded-full font-semibold transition text-sm md:text-base whitespace-nowrap ${selectedCat === cat.id
+                                    ? "bg-[#CBAB79] text-white font-bold"
+                                    : "bg-transparent text-white hover:bg-[#333]"
                                     }`}
                                 onClick={() => setSelectedCat(cat.id)}
                             >
                                 {cat.name}
                             </button>
                         ))}
-                        <button
-                            className={`px-6 py-2 rounded-full font-semibold transition text-base min-w-max
-          ${selectedCat === null
-                                    ? "bg-[#888] text-white font-bold"
-                                    : "bg-transparent text-white hover:bg-[#333]"
-                                }`}
-                            onClick={() => setSelectedCat(null)}
-                        >
-                            All Project
-                        </button>
                     </div>
                 </div>
+
                 {/* Produk Grid */}
-                <div className="w-full">
+                <div className="w-full px-2 sm:px-0">
                     {loading ? (
-                        <div className="text-center text-[#CBAB79] text-lg py-20">Loading...</div>
+                        <div className="text-center text-[#CBAB79] text-lg py-20">
+                            Loading...
+                        </div>
                     ) : error ? (
                         <div className="text-center text-red-400 text-lg py-20">{error}</div>
                     ) : (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                            {filteredProducts.length > 0 ? filteredProducts.map((prod) => (
-                                <div
-                                    key={prod.id}
-                                    className="relative rounded-xl overflow-hidden shadow-lg group aspect-[4/3] bg-[#232323] flex items-start"
-                                >
-                                    <img
-                                        src={prod.thumbnail_url}
-                                        alt={prod.name}
-                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                        loading="lazy"
-                                    />
-                                    <div className="absolute top-0 left-0 z-10 p-4">
-                                        <div className="text-white text-lg font-bold drop-shadow-lg">{prod.name}</div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                            {filteredProducts.length > 0 ? (
+                                filteredProducts.map((prod) => (
+                                    <div
+                                        key={prod.id}
+                                        className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[16/9] bg-[#2a2a2a] w-full min-h-[140px] sm:min-h-[180px] md:min-h-[0]"
+                                    >
+                                        {prod.thumbnail_url.match(/\.(mp4|webm)$/i) ? (
+                                            <video
+                                                src={prod.thumbnail_url}
+                                                className="absolute inset-0 w-full h-full object-cover"
+                                                autoPlay
+                                                loop
+                                                muted
+                                                playsInline
+                                            />
+                                        ) : (
+                                            <img
+                                                src={prod.thumbnail_url}
+                                                alt={prod.name}
+                                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                loading="lazy"
+                                            />
+                                        )}
+
+                                        <div className="absolute inset-0 bg-black/30 z-0" />
+                                        <div className="absolute bottom-0 left-0 z-10 p-3 sm:p-4">
+                                            <div className="text-white text-base sm:text-lg font-bold drop-shadow-md">
+                                                {prod.name}
+                                            </div>
+                                        </div>
                                     </div>
+                                ))
+                            ) : (
+                                <div className="text-[#aaa] italic col-span-full text-center">
+                                    Belum ada produk ditemukan.
                                 </div>
-                            )) : (
-                                <div className="text-[#aaa] italic col-span-full">Belum ada produk ditemukan.</div>
                             )}
                         </div>
                     )}
                 </div>
             </div>
+
         </div>
     );
 }

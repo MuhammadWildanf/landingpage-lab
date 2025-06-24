@@ -1,4 +1,3 @@
-// import SplashCursor from "../blocks/Animations/SplashCursor/SplashCursor";
 import Particles from "../blocks/Backgrounds/Particles/Particles";
 import CanvasCursor from './components/CanvasCursor';
 
@@ -12,7 +11,7 @@ import ContactSection from "./components/ContactSection";
 
 export default function Home() {
   return (
-    <div className="relative text-white font-mono px-4 sm:px-6 md:px-20 pt-16 pb-12">
+    <div className="relative text-white font-mono px-4 sm:px-6 md:px-20">
       <CanvasCursor />
       <div className="absolute inset-0 -z-10">
         <Particles />
