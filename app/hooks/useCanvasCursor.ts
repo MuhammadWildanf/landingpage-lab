@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useEffect } from 'react';
 
 const useCanvasCursor = () => {
@@ -25,6 +27,7 @@ const useCanvasCursor = () => {
   function Line(e) {
     this.init(e || {});
   }
+
   Line.prototype = {
     init: function (e) {
       this.spring = e.spring + 0.1 * Math.random() - 0.02;
@@ -127,78 +130,9 @@ const useCanvasCursor = () => {
 
   var ctx,
     f,
-    let x = 0,
-    let y = 0,
-    let lastX = 0,
-    let lastY = 0,
-    let vx = 0,
-    let vy = 0,
-    let rafId,
-    let isTouch = false,
-    let isMoving = false,
-    let isVisible = true,
-    let isCanvasVisible = true,
-    let isFirstMove = true,
-    let pointerType = '',
-    let pointerDown = false,
-    let pointerDownTime = 0,
-    let pointerUpTime = 0,
-    let pointerDownX = 0,
-    let pointerDownY = 0,
-    let pointerUpX = 0,
-    let pointerUpY = 0,
-    let pointerMoveX = 0,
-    let pointerMoveY = 0,
-    let pointerMoveTime = 0,
-    let pointerMoveVX = 0,
-    let pointerMoveVY = 0,
-    let pointerMoveAX = 0,
-    let pointerMoveAY = 0,
-    let pointerMoveA = 0,
-    let pointerMoveAngle = 0,
-    let pointerMoveSpeed = 0,
-    let pointerMoveDistance = 0,
-    let pointerMoveDirection = 0,
-    let pointerMoveDirectionAngle = 0,
-    let pointerMoveDirectionSpeed = 0,
-    let pointerMoveDirectionDistance = 0,
-    let pointerMoveDirectionVX = 0,
-    let pointerMoveDirectionVY = 0,
-    let pointerMoveDirectionAX = 0,
-    let pointerMoveDirectionAY = 0,
-    let pointerMoveDirectionA = 0,
-    let pointerMoveDirectionAngle2 = 0,
-    let pointerMoveDirectionSpeed2 = 0,
-    let pointerMoveDirectionDistance2 = 0,
-    let pointerMoveDirectionVX2 = 0,
-    let pointerMoveDirectionVY2 = 0,
-    let pointerMoveDirectionAX2 = 0,
-    let pointerMoveDirectionAY2 = 0,
-    let pointerMoveDirectionA2 = 0,
-    let pointerMoveDirectionAngle3 = 0,
-    let pointerMoveDirectionSpeed3 = 0,
-    let pointerMoveDirectionDistance3 = 0,
-    let pointerMoveDirectionVX3 = 0,
-    let pointerMoveDirectionVY3 = 0,
-    let pointerMoveDirectionAX3 = 0,
-    let pointerMoveDirectionAY3 = 0,
-    let pointerMoveDirectionA3 = 0,
-    let pointerMoveDirectionAngle4 = 0,
-    let pointerMoveDirectionSpeed4 = 0,
-    let pointerMoveDirectionDistance4 = 0,
-    let pointerMoveDirectionVX4 = 0,
-    let pointerMoveDirectionVY4 = 0,
-    let pointerMoveDirectionAX4 = 0,
-    let pointerMoveDirectionAY4 = 0,
-    let pointerMoveDirectionA4 = 0,
-    let pointerMoveDirectionAngle5 = 0,
-    let pointerMoveDirectionSpeed5 = 0,
-    let pointerMoveDirectionDistance5 = 0,
-    let pointerMoveDirectionVX5 = 0,
-    let pointerMoveDirectionVY5 = 0,
-    let pointerMoveDirectionAX5 = 0,
-    let pointerMoveDirectionAY5 = 0,
-    let pointerMoveDirectionA5 = 0,
+    e = 0,
+    pos = {},
+    lines = [],
     E = {
       debug: true,
       friction: 0.5,
@@ -242,6 +176,7 @@ const useCanvasCursor = () => {
 
   useEffect(() => {
     renderCanvas();
+
     return () => {
       ctx.running = false;
       document.removeEventListener('mousemove', onMousemove);
@@ -261,4 +196,4 @@ const useCanvasCursor = () => {
   }, []);
 };
 
-export default useCanvasCursor; 
+export default useCanvasCursor;
