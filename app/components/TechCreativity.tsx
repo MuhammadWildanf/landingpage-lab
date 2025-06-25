@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import React from 'react';
+import Image from "next/image";
 
 interface Category {
     id: number;
@@ -226,9 +227,11 @@ export default function TechCreativity() {
                                 );
                             } else {
                                 return (
-                                    <img
+                                    <Image
                                         src={mediaUrl}
                                         alt={currentProduct.name}
+                                        width={800}
+                                        height={400}
                                         className="w-full h-[180px] sm:h-[280px] md:h-[340px] lg:h-[400px] object-cover transition-all duration-500 ease-in-out"
                                         loading="lazy"
                                     />

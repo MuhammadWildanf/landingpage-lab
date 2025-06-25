@@ -3,6 +3,7 @@ import Particles from "../../blocks/Backgrounds/Particles/Particles";
 import CanvasCursor from '../components/CanvasCursor';
 import AOSInitializer from "../components/AOSInitializer";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface Category {
     id: number;
@@ -118,9 +119,11 @@ export default function Interactive() {
                                                 playsInline
                                             />
                                         ) : (
-                                            <img
+                                            <Image
                                                 src={prod.thumbnail_url}
                                                 alt={prod.name}
+                                                width={800}
+                                                height={450}
                                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                                                 loading="lazy"
                                             />
