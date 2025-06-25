@@ -15,12 +15,6 @@ export default function About() {
             <AOSInitializer />
 
             {/* Page Title */}
-            <div className="pt-20 pb-10" data-aos="fade-up">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-wider text-center">
-                    <span className="bg-gradient-to-r from-[#CED4D4] via-[#CBAB79] to-[#CD1DA6] bg-clip-text text-transparent">ABOUT US</span>
-                </h1>
-            </div>
-
             <AboutComponent />
             <ContactSection />
         </div>

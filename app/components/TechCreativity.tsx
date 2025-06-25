@@ -146,26 +146,7 @@ export default function TechCreativity() {
                                 }`}
                             style={{ letterSpacing: '0.08em' }}
                         >
-                            {category.name
-                                .replace(/ & /g, '\n& ')
-                                .replace(/\//g, '/\n')
-                                .split(' ')
-                                .map((word, i, arr) => {
-                                    if (word.includes('\n')) {
-                                        return word.split('\n').map((w, j) => (
-                                            <React.Fragment key={i + '-' + j}>
-                                                {w}
-                                                <br />
-                                            </React.Fragment>
-                                        ));
-                                    }
-                                    return (
-                                        <React.Fragment key={i}>
-                                            {word}
-                                            {i < arr.length - 1 && ' '}
-                                        </React.Fragment>
-                                    );
-                                })}
+                            {category.name}
                         </button>
                     );
                 })}
