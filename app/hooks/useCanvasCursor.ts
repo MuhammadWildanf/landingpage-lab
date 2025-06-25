@@ -1,65 +1,100 @@
 import { useEffect } from 'react';
 
+interface Oscillator {
+  phase: number;
+  offset: number;
+  frequency: number;
+  amplitude: number;
+  init(e: Partial<Oscillator>): void;
+  update(): number;
+  value(): number;
+}
+
+interface NodeType {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+}
+
+interface LineType {
+  spring: number;
+  friction: number;
+  nodes: NodeType[];
+  init(e: { spring: number }): void;
+  update(): void;
+  draw(): void;
+}
+
+type CanvasCtx = CanvasRenderingContext2D & { running?: boolean; frame?: number };
+
 const useCanvasCursor = () => {
-  function n(this: any, e?: any) {
+  function n(this: Oscillator, e?: Partial<Oscillator>) {
     this.init(e || {});
   }
   n.prototype = {
-    init: function (this: any, e: any) {
+    init: function (this: Oscillator, e: Partial<Oscillator>) {
       this.phase = e.phase || 0;
       this.offset = e.offset || 0;
       this.frequency = e.frequency || 0.001;
       this.amplitude = e.amplitude || 1;
     },
-    update: function (this: any) {
-      return (
-        (this.phase += this.frequency),
-        (this.offset + Math.sin(this.phase) * this.amplitude)
-      );
+    update: function (this: Oscillator) {
+      this.phase += this.frequency;
+      return this.offset + Math.sin(this.phase) * this.amplitude;
     },
-    value: function (this: any) {
+    value: function (this: Oscillator) {
       return this.offset + Math.sin(this.phase) * this.amplitude;
     },
   };
 
-  function Line(this: any, e?: any) {
-    this.init(e || {});
+  function Node(this: NodeType) {
+    this.x = 0;
+    this.y = 0;
+    this.vx = 0;
+    this.vy = 0;
+  }
+
+  function Line(this: LineType, e?: { spring: number }) {
+    this.init(e || { spring: 0.4 });
   }
 
   Line.prototype = {
-    init: function (this: any, e: any) {
+    init: function (this: LineType, e: { spring: number }) {
       this.spring = e.spring + 0.1 * Math.random() - 0.02;
       this.friction = E.friction + 0.01 * Math.random() - 0.002;
       this.nodes = [];
-      for (let t, n = 0; n < E.size; n++) {
-        t = new (Node as any)();
+      for (let t: NodeType, n = 0; n < E.size; n++) {
+        t = new (Node as unknown as { new (): NodeType })();
         t.x = pos.x;
         t.y = pos.y;
         this.nodes.push(t);
       }
     },
-    update: function (this: any) {
+    update: function (this: LineType) {
       let e = this.spring,
         t = this.nodes[0];
       t.vx += (pos.x - t.x) * e;
       t.vy += (pos.y - t.y) * e;
-      for (let n, i = 0, a = this.nodes.length; i < a; i++)
-        (t = this.nodes[i]),
-          0 < i &&
-            ((n = this.nodes[i - 1]),
-            (t.vx += (n.x - t.x) * e),
-            (t.vy += (n.y - t.y) * e),
-            (t.vx += n.vx * E.dampening),
-            (t.vy += n.vy * E.dampening)),
-          (t.vx *= this.friction),
-          (t.vy *= this.friction),
-          (t.x += t.vx),
-          (t.y += t.vy),
-          (e *= E.tension);
+      for (let n: NodeType, i = 0, a = this.nodes.length; i < a; i++) {
+        t = this.nodes[i];
+        if (i > 0) {
+          n = this.nodes[i - 1];
+          t.vx += (n.x - t.x) * e;
+          t.vy += (n.y - t.y) * e;
+          t.vx += n.vx * E.dampening;
+          t.vy += n.vy * E.dampening;
+        }
+        t.vx *= this.friction;
+        t.vy *= this.friction;
+        t.x += t.vx;
+        t.y += t.vy;
+        e *= E.tension;
+      }
     },
-    draw: function (this: any) {
-      let e,
-        t,
+    draw: function (this: LineType) {
+      let e: NodeType,
+        t: NodeType,
         n = this.nodes[0].x,
         i = this.nodes[0].y;
       ctx.beginPath();
@@ -83,7 +118,7 @@ const useCanvasCursor = () => {
     function o() {
       lines = [];
       for (let e = 0; e < E.trails; e++)
-        lines.push(new (Line as any)({ spring: 0.4 + (e / E.trails) * 0.025 }));
+        lines.push(new (Line as unknown as { new (e: { spring: number }): LineType })({ spring: 0.4 + (e / E.trails) * 0.025 }));
     }
     function c(e: MouseEvent | TouchEvent) {
       if ('touches' in e) {
@@ -123,7 +158,7 @@ const useCanvasCursor = () => {
         e.update();
         e.draw();
       }
-      ctx.frame++;
+      ctx.frame!++;
       window.requestAnimationFrame(render);
     }
   }
@@ -133,10 +168,10 @@ const useCanvasCursor = () => {
     ctx.canvas.height = window.innerHeight;
   }
 
-  let ctx: any,
-    f: any,
+  let ctx: CanvasCtx,
+    f: Oscillator,
     pos: { x: number; y: number } = { x: 0, y: 0 },
-    lines: any[] = [],
+    lines: LineType[] = [],
     E = {
       debug: true,
       friction: 0.5,
@@ -144,19 +179,13 @@ const useCanvasCursor = () => {
       size: 50,
       dampening: 0.25,
       tension: 0.98,
-    };
-  function Node(this: any) {
-    this.x = 0;
-    this.y = 0;
-    this.vy = 0;
-    this.vx = 0;
-  }
+    } as const;
 
   const renderCanvas = function () {
-    ctx = (document.getElementById('canvas') as HTMLCanvasElement).getContext('2d');
+    ctx = (document.getElementById('canvas') as HTMLCanvasElement).getContext('2d') as CanvasCtx;
     ctx.running = true;
     ctx.frame = 1;
-    f = new (n as any)({
+    f = new (n as unknown as { new (e: Partial<Oscillator>): Oscillator })({
       phase: Math.random() * 2 * Math.PI,
       amplitude: 85,
       frequency: 0.0015,
@@ -180,7 +209,6 @@ const useCanvasCursor = () => {
 
   useEffect(() => {
     renderCanvas();
-
     return () => {
       ctx.running = false;
       document.removeEventListener('mousemove', onMousemove);
@@ -188,6 +216,7 @@ const useCanvasCursor = () => {
       document.body.removeEventListener('orientationchange', resizeCanvas);
       window.removeEventListener('resize', resizeCanvas);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
 
