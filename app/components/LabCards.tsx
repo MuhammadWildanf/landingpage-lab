@@ -101,7 +101,7 @@ export default function LabCards() {
     const cards = [
         {
             title: "LOREM IPSUM",
-            imageSrc: "/assets/images/l.png",
+            imageSrc: "/assets/images/L.png",
             imageAlt: "L",
             backMediaSrc: "https://hybrid-website.ams3.cdn.digitaloceanspaces.com/Home/1-3.mp4", // contoh: back pakai video
             backMediaAlt: "Demo Video",
@@ -109,13 +109,13 @@ export default function LabCards() {
         },
         {
             title: "LOREM IPSUM",
-            imageSrc: "/assets/images/a.png",
+            imageSrc: "/assets/images/A.png",
             imageAlt: "A",
             tags: ["AR/VR/XR", "AI & Generative Systems", "Motion & Real-Time Visualization"]
         },
         {
             title: "LOREM IPSUM",
-            imageSrc: "/assets/images/b.png",
+            imageSrc: "/assets/images/B.png",
             imageAlt: "B",
             tags: ["Custom Software", "Custom Hardware"]
         }
