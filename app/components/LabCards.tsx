@@ -66,7 +66,7 @@ function LabCard({ imageSrc, imageAlt, tags, backMediaSrc, backMediaAlt }: LabCa
 
     return (
         <div
-            className="group perspective w-full max-w-[420px] sm:max-w-[360px] md:max-w-[400px] min-h-[520px] sm:min-h-[600px] md:min-h-[700px] cursor-pointer"
+            className="group perspective w-full max-w-[95vw] min-h-[440px] sm:max-w-[300px] sm:min-h-[400px] md:max-w-[340px] md:min-h-[480px] lg:max-w-[400px] lg:min-h-[520px] xl:max-w-[440px] xl:min-h-[600px] cursor-pointer"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onMouseEnter={handleMouseEnter}
@@ -75,7 +75,7 @@ function LabCard({ imageSrc, imageAlt, tags, backMediaSrc, backMediaAlt }: LabCa
             <div
                 className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${isFlipped ? "rotate-y-180" : ""}`}
             >
-                <div className="absolute inset-0 bg-[#181C1C] rounded-2xl p-4 sm:p-6 md:p-8 flex flex-col justify-between shadow-lg min-h-[520px] sm:min-h-[600px] md:min-h-[700px] backface-hidden">
+                <div className="absolute inset-0 bg-[#181C1C] rounded-2xl p-4 sm:p-6 md:p-8 flex flex-col justify-between shadow-lg min-h-[440px] sm:min-h-[400px] md:min-h-[480px] lg:min-h-[520px] xl:min-h-[600px] backface-hidden">
                     <div className="flex-1 flex flex-col justify-center">
                         <div className="flex items-center justify-center h-[180px]">
                             {frontMedia}
@@ -89,7 +89,7 @@ function LabCard({ imageSrc, imageAlt, tags, backMediaSrc, backMediaAlt }: LabCa
                         ))}
                     </div>
                 </div>
-                <div className="absolute inset-0 bg-[#232323] rounded-2xl flex items-center justify-center min-h-[520px] sm:min-h-[600px] md:min-h-[700px] rotate-y-180 backface-hidden">
+                <div className="absolute inset-0 bg-[#232323] rounded-2xl flex items-center justify-center min-h-[440px] sm:min-h-[400px] md:min-h-[480px] lg:min-h-[520px] xl:min-h-[600px] rotate-y-180 backface-hidden">
                     {backMedia}
                 </div>
             </div>

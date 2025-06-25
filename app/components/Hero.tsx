@@ -6,12 +6,12 @@ export default function Hero() {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
-        <div className="relative w-full min-h-screen flex flex-col justify-center items-center" data-aos="fade-up">
-            <main className="flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-16 w-full max-w-6xl mx-auto px-4 sm:px-0">
+        <div className="relative w-full min-h-[70vh] flex flex-col justify-center items-center px-4" data-aos="fade-up">
+            <main className="flex flex-col sm:flex-row items-center justify-between gap-10 sm:gap-16 w-full max-w-6xl mx-auto">
 
                 {/* Logo kiri */}
                 <div
-                    className="flex-shrink-0 cursor-pointer"
+                    className="w-full sm:w-2/3 md:w-1/2 flex justify-center sm:justify-start cursor-pointer"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
@@ -20,13 +20,13 @@ export default function Hero() {
                         alt="IMAJIWA LAB"
                         width={800}
                         height={400}
-                        className="h-auto"
+                        className="h-auto w-full max-w-[400px] object-contain"
                         priority
                     />
                 </div>
 
                 {/* Teks kanan */}
-                <div className="sm:w-1/3 w-full text-left text-base sm:text-lg md:text-xl lg:text-2xl tracking-wide leading-relaxed whitespace-pre-line mt-6 sm:mt-0">
+                <div className="w-full sm:w-1/2 text-center sm:text-left text-base sm:text-lg md:text-xl lg:text-2xl tracking-wide leading-relaxed whitespace-pre-line mt-6 sm:mt-0">
                     Experimenting{"\n"}
                     Creating{"\n"}
                     Geeking Out{"\n"}
