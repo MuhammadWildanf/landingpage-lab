@@ -170,16 +170,16 @@ const useCanvasCursor = () => {
 
   let ctx: CanvasCtx,
     f: Oscillator,
-    pos: { x: number; y: number } = { x: 0, y: 0 },
-    lines: LineType[] = [],
-    E = {
-      debug: true,
-      friction: 0.5,
-      trails: 20,
-      size: 50,
-      dampening: 0.25,
-      tension: 0.98,
-    } as const;
+    lines: LineType[] = [];
+  const pos: { x: number; y: number } = { x: 0, y: 0 };
+  const E = {
+    debug: true,
+    friction: 0.5,
+    trails: 20,
+    size: 50,
+    dampening: 0.25,
+    tension: 0.98,
+  } as const;
 
   const renderCanvas = function () {
     ctx = (document.getElementById('canvas') as HTMLCanvasElement).getContext('2d') as CanvasCtx;
