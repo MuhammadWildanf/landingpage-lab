@@ -36,6 +36,7 @@ export default function TechCreativity() {
     const [error, setError] = useState<string | null>(null);
     const [activeCategory, setActiveCategory] = useState<number | null>(null);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [isPreloaded, setIsPreloaded] = useState(false);
 
     // Fetch categories and products from external API
     useEffect(() => {
@@ -109,6 +110,36 @@ export default function TechCreativity() {
         return `https://api.imajiwa.id${mediaUrl}`;
     };
 
+    useEffect(() => {
+        if (!products.length) return;
+        let loaded = 0;
+        const total = products.length;
+        if (total === 0) return;
+        products.forEach(product => {
+            const mediaUrl = getMediaUrl(product);
+            if (!isVideo(mediaUrl)) {
+                const img = new window.Image();
+                img.onload = img.onerror = () => {
+                    loaded++;
+                    if (loaded === total) {
+                        setIsPreloaded(true);
+                    }
+                };
+                img.src = mediaUrl;
+            } else {
+                const video = document.createElement('video');
+                video.preload = "auto";
+                video.oncanplaythrough = video.onerror = () => {
+                    loaded++;
+                    if (loaded === total) {
+                        setIsPreloaded(true);
+                    }
+                };
+                video.src = mediaUrl;
+            }
+        });
+    }, [products]);
+
     if (loading) {
         return (
             <section className="mt-20 sm:mt-24 px-4 sm:px-8 lg:px-20 relative text-white">
@@ -134,22 +165,27 @@ export default function TechCreativity() {
             </h2>
 
             {/* Category Tabs */}
-            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 mb-8 sm:mb-12 text-sm sm:text-base tracking-widest uppercase font-mono">
-                {categories.map((category) => {
-                    return (
-                        <button
-                            key={category.id}
-                            onClick={() => handleCategoryClick(category.id)}
-                            className={`transition-all px-2 pb-1 border-b-2 font-mono max-w-[140px] whitespace-pre-line text-center ${activeCategory === category.id
-                                ? 'font-bold text-[#E9FF4E] border-[#E9FF4E]'
-                                : 'text-white border-transparent hover:text-[#E9FF4E] hover:border-[#E9FF4E]'
-                                }`}
-                            style={{ letterSpacing: '0.08em' }}
-                        >
-                            {category.name}
-                        </button>
-                    );
-                })}
+            <div className="
+  flex flex-nowrap overflow-x-auto
+  gap-x-2 sm:gap-x-4 lg:gap-x-6
+  mb-8 sm:mb-12
+  text-sm sm:text-base tracking-widest uppercase font-mono
+  scrollbar-thin scrollbar-thumb-[#E9FF4E]/40 scrollbar-track-transparent
+  max-w-screen-lg mx-auto
+">
+                {categories.map((category) => (
+                    <button
+                        key={category.id}
+                        onClick={() => handleCategoryClick(category.id)}
+                        className={`transition-all px-4 py-2 border-b-2 font-mono max-w-[180px]  text-center ${activeCategory === category.id
+                            ? 'font-bold text-[#E9FF4E] border-[#E9FF4E]'
+                            : 'text-white border-transparent hover:text-[#E9FF4E] hover:border-[#E9FF4E]'
+                            }`}
+                        style={{ letterSpacing: '0.08em' }}
+                    >
+                        {category.name}
+                    </button>
+                ))}
             </div>
 
             {/* Carousel */}
@@ -261,7 +297,7 @@ export default function TechCreativity() {
             )}
 
             <div className="relative mt-8 sm:mt-10 max-w-2xl mx-auto">
-                <div className="absolute left-1/2 -translate-x-1/2 -top-3 w-2/3 h-1 bg-gradient-to-r from-[#CED4D4] via-[#CBAB79] to-[#CD1DA6] rounded-full blur-sm opacity-80" />
+                <div className="absolute left-1/2 -translate-x-1/2 -top-3 w-2/3 h-1" />
                 <p className="text-center text-sm sm:text-base text-white font-mono leading-relaxed mt-4 sm:mt-6">
                     {filteredProducts.length > 0 ? filteredProducts[currentSlide].description : 'Select a category to see project details.'}
                 </p>

@@ -35,3 +35,32 @@ html {
 .perspective { perspective: 1000px; }
 .backface-hidden { backface-visibility: hidden; }
 .rotate-y-180 { transform: rotateY(180deg); }
+
+/* Custom scrollbar untuk kategori */
+.category-scrollbar::-webkit-scrollbar {
+  height: 4px;
+  background: transparent;
+}
+.category-scrollbar::-webkit-scrollbar-thumb {
+  background: #E9FF4E;
+  border-radius: 4px;
+}
+.category-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Untuk Firefox */
+.category-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #E9FF4E transparent;
+}
+
+/* Sembunyikan scrollbar di desktop */
+@media (min-width: 768px) {
+  .category-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .category-scrollbar {
+    scrollbar-width: none;
+  }
+}

@@ -111,12 +111,16 @@ export default function LabCards() {
             title: "LOREM IPSUM",
             imageSrc: "/assets/images/A.png",
             imageAlt: "A",
+            backMediaSrc: "https://hybrid-website.ams3.cdn.digitaloceanspaces.com/Home/3-3cut.mp4", // contoh: back pakai video
+            backMediaAlt: "Demo Video",
             tags: ["AR/VR/XR", "AI & Generative Systems", "Motion & Real-Time Visualization"]
         },
         {
             title: "LOREM IPSUM",
             imageSrc: "/assets/images/B.png",
             imageAlt: "B",
+            backMediaSrc: "https://hybrid-website.ams3.cdn.digitaloceanspaces.com/Home/3-3cut.mp4https://hybrid-website.ams3.cdn.digitaloceanspaces.com/Home/2-3.mp4", // contoh: back pakai video
+            backMediaAlt: "Demo Video",
             tags: ["Custom Software", "Custom Hardware"]
         }
     ];
