@@ -164,143 +164,94 @@ export default function TechCreativity() {
                 TECH CREATIVITY = <span className="ml-1 bg-gradient-to-r from-[#CED4D4] via-[#CBAB79] to-[#CD1DA6] bg-clip-text text-transparent">MAGIC</span>
             </h2>
 
-            {/* Category Tabs */}
-            <div className="
-  flex flex-nowrap overflow-x-auto
-  gap-x-2 sm:gap-x-4 lg:gap-x-6
-  mb-8 sm:mb-12
-  text-sm sm:text-base tracking-widest uppercase font-mono
-  scrollbar-thin scrollbar-thumb-[#E9FF4E]/40 scrollbar-track-transparent
-  max-w-screen-lg mx-auto
-">
-                {categories.map((category) => (
-                    <button
-                        key={category.id}
-                        onClick={() => handleCategoryClick(category.id)}
-                        className={`transition-all px-4 py-2 border-b-2 font-mono max-w-[180px]  text-center ${activeCategory === category.id
-                            ? 'font-bold text-[#E9FF4E] border-[#E9FF4E]'
-                            : 'text-white border-transparent hover:text-[#E9FF4E] hover:border-[#E9FF4E]'
-                            }`}
-                        style={{ letterSpacing: '0.08em' }}
-                    >
-                        {category.name}
-                    </button>
-                ))}
-            </div>
-
-            {/* Carousel */}
-            <div className="relative w-full max-w-2xl sm:max-w-3xl md:max-w-4xl mx-auto flex items-center justify-center min-h-[220px] sm:min-h-[320px] md:min-h-[400px]">
-                <button
-                    onClick={handlePrevSlide}
-                    className="hidden sm:flex absolute sm:-left-20 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full border border-white/40 bg-black/60 hover:bg-[#E9FF4E]/20 hover:border-[#E9FF4E] text-2xl shadow-md transition-all"
-                    aria-label="Previous"
-                    disabled={filteredProducts.length === 0}
-                >
-                    <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                        <path d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-
-                {filteredProducts.length > 0 ? (
-                    <div
-                        className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-xl w-full bg-[#202020]"
-                        style={{ boxShadow: '0 0 24px 0 #a259ff55' }}
-                        onTouchStart={filteredProducts.length > 1 ? (e) => {
-                            const startX = e.touches[0].clientX;
-                            let moved = false;
-                            const handleTouchMove = (moveEvent: TouchEvent) => {
-                                const diff = moveEvent.touches[0].clientX - startX;
-                                if (Math.abs(diff) > 40 && !moved) {
-                                    moved = true;
-                                    if (diff > 0) handlePrevSlide();
-                                    else handleNextSlide();
-                                }
-                            };
-                            const handleTouchEnd = () => {
-                                window.removeEventListener('touchmove', handleTouchMove);
-                                window.removeEventListener('touchend', handleTouchEnd);
-                            };
-                            window.addEventListener('touchmove', handleTouchMove);
-                            window.addEventListener('touchend', handleTouchEnd);
-                        } : undefined}
-                    >
-                        {(() => {
+            <div className="flex flex-col md:flex-row gap-8 md:gap-12 max-w-6xl mx-auto items-stretch">
+                {/* Sidebar Kategori Vertikal (hanya di desktop) */}
+                <div className="hidden md:flex flex-col gap-3 w-1/4">
+                    {categories.map((category) => (
+                        <button
+                            key={category.id}
+                            onClick={() => handleCategoryClick(category.id)}
+                            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-left font-mono text-base transition-all border-2 ${activeCategory === category.id
+                                ? 'bg-gradient-to-r from-[#232323] via-[#232323] to-[#E9FF4E] text-white border-[#E9FF4E] font-bold shadow-lg'
+                                : 'bg-[#232323] text-white border-transparent hover:border-[#E9FF4E] hover:bg-[#181818]'}
+                                `}
+                        >
+                            <span className="inline-block w-6 h-6 bg-white/10 rounded mr-2" />
+                            <span className="whitespace-pre-line">{category.name}</span>
+                        </button>
+                    ))}
+                </div>
+                {/* Kategori Horizontal Bar (hanya di mobile) */}
+                <div className="flex md:hidden flex-nowrap overflow-x-auto gap-x-2 mb-4 category-scrollbar w-full">
+                    {categories.map((category) => (
+                        <button
+                            key={category.id}
+                            onClick={() => handleCategoryClick(category.id)}
+                            className={`transition-all px-4 py-2 border-b-2 font-mono max-w-[180px] text-center ${activeCategory === category.id
+                                ? 'font-bold text-[#E9FF4E] border-[#E9FF4E]'
+                                : 'text-white border-transparent hover:text-[#E9FF4E] hover:border-[#E9FF4E]'}
+                                `}
+                            style={{ letterSpacing: '0.08em' }}
+                        >
+                            {category.name}
+                        </button>
+                    ))}
+                </div>
+                {/* Konten Utama */}
+                <div className="w-full md:flex-1 flex items-center justify-center md:h-full">
+                    {filteredProducts.length > 0 ? (
+                        (() => {
                             const currentProduct = filteredProducts[currentSlide];
                             const mediaUrl = getMediaUrl(currentProduct);
                             const isVideoFile = isVideo(mediaUrl);
-
-                            if (isVideoFile) {
-                                return (
-                                    <video
-                                        src={mediaUrl}
-                                        className="w-full h-[180px] sm:h-[280px] md:h-[340px] lg:h-[400px] object-cover transition-all duration-500 ease-in-out"
-                                        autoPlay
-                                        muted
-                                        loop
-                                        playsInline
-                                        controls={false}
-                                        preload="metadata"
-                                    />
-                                );
-                            } else {
-                                return (
-                                    <Image
-                                        src={mediaUrl}
-                                        alt={currentProduct.name}
-                                        width={800}
-                                        height={400}
-                                        className="w-full h-[180px] sm:h-[280px] md:h-[340px] lg:h-[400px] object-cover transition-all duration-500 ease-in-out"
-                                        loading="lazy"
-                                    />
-                                );
-                            }
-                        })()}
-
-                        <div className="absolute bottom-0 left-0 w-full p-3 sm:p-4 md:p-5 bg-gradient-to-t from-[#202020] via-[#202020]/40 to-transparent">
-                            <p className="text-xs sm:text-sm text-purple-300 mb-1">{filteredProducts[currentSlide].category?.name || 'Project'}</p>
-                            <p className="text-base sm:text-lg md:text-xl font-bold text-white leading-tight mb-1">{filteredProducts[currentSlide].name}</p>
-                            {filteredProducts[currentSlide].location && (
-                                <p className="text-xs sm:text-sm text-white mb-1 font-normal">{filteredProducts[currentSlide].location}</p>
-                            )}
+                            return (
+                                <div className="relative rounded-2xl overflow-hidden border border-white/20 shadow-xl w-full max-w-3xl bg-[#202020]">
+                                    {isVideoFile ? (
+                                        <video
+                                            src={mediaUrl}
+                                            className="w-full h-[320px] md:h-[500px] object-cover"
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                            controls={false}
+                                            preload="metadata"
+                                        />
+                                    ) : (
+                                        <Image
+                                            src={mediaUrl}
+                                            alt={currentProduct.name}
+                                            width={900}
+                                            height={500}
+                                            className="w-full h-[320px] md:h-[500px] object-cover"
+                                            loading="lazy"
+                                        />
+                                    )}
+                                    {/* Overlay info project hanya di desktop */}
+                                    <div className="hidden md:block absolute left-0 bottom-0 p-6 text-left z-10">
+                                        <p className="text-xs text-blue-300 mb-1">Study Case</p>
+                                        <p className="text-xl font-bold text-white mb-1">{currentProduct.name}</p>
+                                        {currentProduct.location && (
+                                            <p className="text-base text-white">{currentProduct.location}</p>
+                                        )}
+                                    </div>
+                                    {/* Overlay info project di mobile (opsional, bisa dihilangkan jika tidak ingin) */}
+                                    <div className="block md:hidden absolute left-0 bottom-0 p-3 text-left z-10">
+                                        <p className="text-xs text-blue-300 mb-1">Study Case</p>
+                                        <p className="text-base font-bold text-white mb-1">{currentProduct.name}</p>
+                                        {currentProduct.location && (
+                                            <p className="text-xs text-white">{currentProduct.location}</p>
+                                        )}
+                                    </div>
+                                </div>
+                            );
+                        })()
+                    ) : (
+                        <div className="rounded-2xl border border-white/20 shadow-xl w-full h-[220px] flex items-center justify-center text-gray-400 bg-[#202020]">
+                            No project for this category.
                         </div>
-                    </div>
-                ) : (
-                    <div className="rounded-2xl sm:rounded-3xl border border-white/20 shadow-xl w-full h-[120px] sm:h-[180px] md:h-[220px] flex items-center justify-center text-gray-400 bg-[#202020]">
-                        No project for this category.
-                    </div>
-                )}
-
-                <button
-                    onClick={handleNextSlide}
-                    className="hidden sm:flex absolute sm:-right-20 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full border border-white/40 bg-black/60 hover:bg-[#E9FF4E]/20 hover:border-[#E9FF4E] text-2xl shadow-md transition-all"
-                    aria-label="Next"
-                    disabled={filteredProducts.length === 0}
-                >
-                    <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                        <path d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
-            </div>
-
-            {/* Carousel Indicators */}
-            {filteredProducts.length > 1 && (
-                <div className="flex justify-center gap-1 sm:gap-2 mt-3 sm:mt-4">
-                    {filteredProducts.map((product, index) => (
-                        <button
-                            key={product.id || index}
-                            className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all border border-[#E9FF4E] ${currentSlide === index ? 'bg-[#E9FF4E]' : 'bg-transparent'
-                                }`}
-                            aria-label={`Go to slide ${index + 1}`}
-                        />
-                    ))}
+                    )}
                 </div>
-            )}
-
-            <div className="relative mt-8 sm:mt-10 max-w-2xl mx-auto">
-                <div className="absolute left-1/2 -translate-x-1/2 -top-3 w-2/3 h-1" />
-                <p className="text-center text-sm sm:text-base text-white font-mono leading-relaxed mt-4 sm:mt-6">
-                    {filteredProducts.length > 0 ? filteredProducts[currentSlide].description : 'Select a category to see project details.'}
-                </p>
             </div>
         </section>
     );
