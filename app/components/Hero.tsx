@@ -11,22 +11,28 @@ export default function Hero() {
 
                 {/* Logo kiri */}
                 <div
-                    className="w-full sm:w-2/3 md:w-1/2 flex justify-center sm:justify-start cursor-pointer"
+                    className={`w-full sm:w-full md:w-3/4 lg:w-2/3 flex justify-center sm:justify-start cursor-pointer transition-transform duration-300 ${isHovered ? "z-10 scale-110" : "scale-100"}`}
+                    style={{ position: 'relative' }}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
+                    onTouchStart={() => setIsHovered(true)}
+                    onTouchEnd={() => setIsHovered(false)}
+                    onTouchCancel={() => setIsHovered(false)}
                 >
-                    <Image
-                        src={isHovered ? "/assets/imajiwalab_logo_glitch_2.gif" : "/assets/images/logohero.png"}
-                        alt="IMAJIWA LAB"
-                        width={800}
-                        height={400}
-                        className="h-auto w-full max-w-[400px] object-contain"
-                        priority
-                    />
+                    <div style={{ width: '100%', aspectRatio: '2647 / 996' }} className="h-full">
+                        <Image
+                            src={isHovered ? "/assets/imajiwalab_logo_glitch_2.gif" : "/assets/images/logohero.png"}
+                            alt="IMAJIWA LAB"
+                            width={800}
+                            height={400}
+                            className="h-full w-full max-w-[1200px] md:max-w-[900px] sm:max-w-[98vw] object-cover"
+                            priority
+                        />
+                    </div>
                 </div>
 
                 {/* Teks kanan */}
-                <div className="w-full sm:w-1/2 text-center sm:text-left text-base sm:text-lg md:text-xl lg:text-2xl tracking-wide leading-relaxed whitespace-pre-line mt-6 sm:mt-0">
+                <div className="w-full sm:w-full md:w-1/4 lg:w-1/3 text-center sm:text-left text-base sm:text-lg md:text-xl lg:text-2xl tracking-wide leading-relaxed whitespace-pre-line mt-6 sm:mt-0">
                     Experimenting{"\n"}
                     Creating{"\n"}
                     Geeking Out{"\n"}
