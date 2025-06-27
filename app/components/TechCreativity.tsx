@@ -171,9 +171,9 @@ export default function TechCreativity() {
                         <button
                             key={category.id}
                             onClick={() => handleCategoryClick(category.id)}
-                            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-left font-mono text-base transition-all border-2 ${activeCategory === category.id
-                                ? 'bg-gradient-to-r from-[#232323] via-[#232323] to-[#E9FF4E] text-white border-[#E9FF4E] font-bold shadow-lg'
-                                : 'bg-[#232323] text-white border-transparent hover:border-[#E9FF4E] hover:bg-[#181818]'}
+                            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-left font-mono text-base transition-all ${activeCategory === category.id
+                                ? 'bg-gradient-to-r from-[#2B2B2B] via-[#CBAB79] to-[#CD1DA6] font-bold shadow-lg'
+                                : 'bg-[#232323] text-white border-transparent hover:border-[#CBAB79] hover:bg-[#181818]'}
                                 `}
                         >
                             <span className="inline-block w-6 h-6 bg-white/10 rounded mr-2" />
