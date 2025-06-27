@@ -36,7 +36,6 @@ export default function TechCreativity() {
     const [error, setError] = useState<string | null>(null);
     const [activeCategory, setActiveCategory] = useState<number | null>(null);
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [isPreloaded, setIsPreloaded] = useState(false);
 
     // Fetch categories and products from external API
     useEffect(() => {
@@ -75,20 +74,6 @@ export default function TechCreativity() {
         setActiveCategory(categoryId);
     };
 
-    const handlePrevSlide = () => {
-        if (!filteredProducts.length) return;
-        setCurrentSlide((prev) =>
-            prev === 0 ? filteredProducts.length - 1 : prev - 1
-        );
-    };
-
-    const handleNextSlide = () => {
-        if (!filteredProducts.length) return;
-        setCurrentSlide((prev) =>
-            prev === filteredProducts.length - 1 ? 0 : prev + 1
-        );
-    };
-
     // Function to check if media is video
     const isVideo = (url: string): boolean => {
         const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv'];
@@ -109,36 +94,6 @@ export default function TechCreativity() {
         // Jika relative, tambahkan prefix
         return `https://api.imajiwa.id${mediaUrl}`;
     };
-
-    useEffect(() => {
-        if (!products.length) return;
-        let loaded = 0;
-        const total = products.length;
-        if (total === 0) return;
-        products.forEach(product => {
-            const mediaUrl = getMediaUrl(product);
-            if (!isVideo(mediaUrl)) {
-                const img = new window.Image();
-                img.onload = img.onerror = () => {
-                    loaded++;
-                    if (loaded === total) {
-                        setIsPreloaded(true);
-                    }
-                };
-                img.src = mediaUrl;
-            } else {
-                const video = document.createElement('video');
-                video.preload = "auto";
-                video.oncanplaythrough = video.onerror = () => {
-                    loaded++;
-                    if (loaded === total) {
-                        setIsPreloaded(true);
-                    }
-                };
-                video.src = mediaUrl;
-            }
-        });
-    }, [products]);
 
     if (loading) {
         return (
