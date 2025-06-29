@@ -39,7 +39,7 @@ export default function ClientLogos() {
                                 alt={client.name}
                                 width={120}
                                 height={64}
-                                className="object-contain max-h-14 w-auto h-full filter grayscale hover:grayscale-0 transition duration-300"
+                                className="object-contain max-h-14 w-auto h-full transition duration-300"
                                 loading="lazy"
                             />
                         </div>
