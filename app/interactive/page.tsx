@@ -4,6 +4,7 @@ import CanvasCursor from '../components/CanvasCursor';
 import AOSInitializer from "../components/AOSInitializer";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Category {
     id: number;
@@ -19,6 +20,7 @@ interface Product {
     thumbnail_url: string;
     category_id: number;
     price?: string;
+    slug: string;
 }
 
 export default function Interactive() {
@@ -105,9 +107,10 @@ export default function Interactive() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                             {filteredProducts.length > 0 ? (
                                 filteredProducts.map((prod) => (
-                                    <div
+                                    <Link
                                         key={prod.id}
-                                        className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[16/9] bg-[#2a2a2a] w-full min-h-[140px] sm:min-h-[180px] md:min-h-[0]"
+                                        href={`/interactive/${prod.slug}`}
+                                        className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[16/9] bg-[#2a2a2a] w-full min-h-[140px] sm:min-h-[180px] md:min-h-[0] cursor-pointer transition-transform hover:scale-[1.03] focus:outline-none"
                                     >
                                         {prod.thumbnail_url.match(/\.(mp4|webm)$/i) ? (
                                             <video
@@ -135,7 +138,7 @@ export default function Interactive() {
                                                 {prod.name}
                                             </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 ))
                             ) : (
                                 <div className="text-[#aaa] italic col-span-full text-center">
