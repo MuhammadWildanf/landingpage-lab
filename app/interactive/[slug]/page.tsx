@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 
-export default async function ProductDetailPage({ params }: { params: { slug: string } }) {
+export default async function ProductDetailPage(props: any) {
+  const params = await props.params;
   const { slug } = params;
 
   // Fetch detail produk by slug
@@ -19,7 +20,7 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
   try {
     specifications = product.specifications ? JSON.parse(product.specifications) : {};
     requirements = product.requirements ? JSON.parse(product.requirements) : {};
-  } catch {}
+  } catch { }
 
   return (
     <div className="max-w-3xl mx-auto py-12 px-4 text-white font-mono">
