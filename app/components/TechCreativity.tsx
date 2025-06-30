@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
 import Image from "next/image";
+import Link from "next/link";
 
 interface Category {
     id: number;
@@ -23,6 +24,7 @@ interface Product {
     category_id: number;
     name: string;
     description: string;
+    slug: string;
     thumbnail_url?: string;
     media?: ProductMedia[];
     category?: Category;
@@ -156,49 +158,56 @@ export default function TechCreativity() {
                 <div className="w-full md:flex-1 flex items-center justify-center md:h-full">
                     {filteredProducts.length > 0 ? (
                         (() => {
-                            const currentProduct = filteredProducts[currentSlide];
+                            const currentProduct = filteredProducts[currentSlide] as Product;
                             const mediaUrl = getMediaUrl(currentProduct);
                             const isVideoFile = isVideo(mediaUrl);
                             return (
-                                <div className="relative rounded-2xl overflow-hidden border border-white/20 shadow-xl w-full max-w-3xl bg-[#202020]">
-                                    {isVideoFile ? (
-                                        <video
-                                            src={mediaUrl}
-                                            className="w-full h-[320px] md:h-[500px] object-cover"
-                                            autoPlay
-                                            muted
-                                            loop
-                                            playsInline
-                                            controls={false}
-                                            preload="metadata"
-                                        />
-                                    ) : (
-                                        <Image
-                                            src={mediaUrl}
-                                            alt={currentProduct.name}
-                                            width={900}
-                                            height={500}
-                                            className="w-full h-[320px] md:h-[500px] object-cover"
-                                            loading="lazy"
-                                        />
-                                    )}
-                                    {/* Overlay info project hanya di desktop */}
-                                    <div className="hidden md:block absolute left-0 bottom-0 p-6 text-left z-10">
-                                        <p className="text-xs text-blue-300 mb-1">Study Case</p>
-                                        <p className="text-xl font-bold text-white mb-1">{currentProduct.name}</p>
-                                        {currentProduct.location && (
-                                            <p className="text-base text-white">{currentProduct.location}</p>
+                                <Link
+                                    href={`/interactive/${currentProduct.slug}`}
+                                    className="block"
+                                    tabIndex={0}
+                                    aria-label={currentProduct.name}
+                                >
+                                    <div className="relative rounded-2xl overflow-hidden border border-white/20 shadow-xl w-full max-w-3xl bg-[#202020]">
+                                        {isVideoFile ? (
+                                            <video
+                                                src={mediaUrl}
+                                                className="w-full h-[320px] md:h-[500px] object-cover"
+                                                autoPlay
+                                                muted
+                                                loop
+                                                playsInline
+                                                controls={false}
+                                                preload="metadata"
+                                            />
+                                        ) : (
+                                            <Image
+                                                src={mediaUrl}
+                                                alt={currentProduct.name}
+                                                width={900}
+                                                height={500}
+                                                className="w-full h-[320px] md:h-[500px] object-cover"
+                                                loading="lazy"
+                                            />
                                         )}
+                                        {/* Overlay info project hanya di desktop */}
+                                        <div className="hidden md:block absolute left-0 bottom-0 p-6 text-left z-10">
+                                            <p className="text-xs text-blue-300 mb-1">Study Case</p>
+                                            <p className="text-xl font-bold text-white mb-1">{currentProduct.name}</p>
+                                            {currentProduct.location && (
+                                                <p className="text-base text-white">{currentProduct.location}</p>
+                                            )}
+                                        </div>
+                                        {/* Overlay info project di mobile (opsional, bisa dihilangkan jika tidak ingin) */}
+                                        <div className="block md:hidden absolute left-0 bottom-0 p-3 text-left z-10">
+                                            <p className="text-xs text-blue-300 mb-1">Study Case</p>
+                                            <p className="text-base font-bold text-white mb-1">{currentProduct.name}</p>
+                                            {currentProduct.location && (
+                                                <p className="text-xs text-white">{currentProduct.location}</p>
+                                            )}
+                                        </div>
                                     </div>
-                                    {/* Overlay info project di mobile (opsional, bisa dihilangkan jika tidak ingin) */}
-                                    <div className="block md:hidden absolute left-0 bottom-0 p-3 text-left z-10">
-                                        <p className="text-xs text-blue-300 mb-1">Study Case</p>
-                                        <p className="text-base font-bold text-white mb-1">{currentProduct.name}</p>
-                                        {currentProduct.location && (
-                                            <p className="text-xs text-white">{currentProduct.location}</p>
-                                        )}
-                                    </div>
-                                </div>
+                                </Link>
                             );
                         })()
                     ) : (

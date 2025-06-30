@@ -2,6 +2,16 @@ import { notFound } from 'next/navigation';
 import Image from "next/image";
 import Link from 'next/link';
 
+export async function generateStaticParams() {
+  const res = await fetch('https://api.imajiwa.id/public/products');
+  const data = await res.json();
+  const products = Array.isArray(data) ? data : data.data;
+
+  return products.map((prod: { slug: string }) => ({
+    slug: prod.slug,
+  }));
+}
+
 interface RelatedProduct {
   id: number;
   name: string;
@@ -16,7 +26,7 @@ export default async function ProductDetailPage(props: any) {
   const { slug } = params;
 
   // Fetch detail produk by slug
-  const res = await fetch(`https://api.imajiwa.id/public/products/slug/${slug}`, { cache: 'no-store' });
+  const res = await fetch(`https://api.imajiwa.id/public/products/slug/${slug}`, { cache: 'force-cache' });
   const json = await res.json();
   const product = json.data;
 
