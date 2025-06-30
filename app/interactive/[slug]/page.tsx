@@ -2,8 +2,6 @@ import { notFound } from 'next/navigation';
 import Image from "next/image";
 import Link from 'next/link';
 
-type ParamsType = { slug: string } | Promise<{ slug: string }>;
-
 interface RelatedProduct {
   id: number;
   name: string;
@@ -12,8 +10,15 @@ interface RelatedProduct {
   category_id: number;
 }
 
-export default async function ProductDetailPage(props: { params: ParamsType }) {
-  const params = await props.params;
+export default async function ProductDetailPage(
+  props: { params: { slug: string } } | { params: Promise<{ slug: string }> }
+) {
+  let params: { slug: string };
+  if (typeof (props.params as Promise<unknown>).then === "function") {
+    params = await (props.params as Promise<{ slug: string }>);
+  } else {
+    params = props.params as { slug: string };
+  }
   const { slug } = params;
 
   // Fetch detail produk by slug
