@@ -10,15 +10,9 @@ interface RelatedProduct {
   category_id: number;
 }
 
-export default async function ProductDetailPage(
-  props: { params: { slug: string } } | { params: Promise<{ slug: string }> }
-) {
-  let params: { slug: string };
-  if (typeof (props.params as Promise<unknown>).then === "function") {
-    params = await (props.params as Promise<{ slug: string }>);
-  } else {
-    params = props.params as { slug: string };
-  }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async function ProductDetailPage(props: any) {
+  const params = typeof props.params?.then === "function" ? await props.params : props.params;
   const { slug } = params;
 
   // Fetch detail produk by slug
