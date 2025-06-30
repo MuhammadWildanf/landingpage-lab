@@ -4,6 +4,14 @@ import Link from 'next/link';
 
 type ParamsType = { slug: string } | Promise<{ slug: string }>;
 
+interface RelatedProduct {
+  id: number;
+  name: string;
+  slug: string;
+  thumbnail_url: string;
+  category_id: number;
+}
+
 export default async function ProductDetailPage(props: { params: ParamsType }) {
   const params = await props.params;
   const { slug } = params;
@@ -16,12 +24,11 @@ export default async function ProductDetailPage(props: { params: ParamsType }) {
   if (!product) return notFound();
 
   // Fetch all products for related section
-  let relatedProducts: any[] = [];
+  let relatedProducts: RelatedProduct[] = [];
   try {
     const relRes = await fetch('https://api.imajiwa.id/public/products', { cache: 'no-store' });
     const relJson = await relRes.json();
     if (Array.isArray(relJson)) {
-      // fallback if API returns array directly
       relatedProducts = relJson;
     } else if (Array.isArray(relJson.data)) {
       relatedProducts = relJson.data;
@@ -29,7 +36,7 @@ export default async function ProductDetailPage(props: { params: ParamsType }) {
       relatedProducts = [];
     }
     // Filter: same category, not current product, ambil max 6
-    relatedProducts = relatedProducts.filter((p: any) => p.category_id === product.category_id && p.id !== product.id).slice(0, 6);
+    relatedProducts = relatedProducts.filter((p) => p.category_id === product.category_id && p.id !== product.id).slice(0, 6);
   } catch { }
 
   // Ambil media utama
