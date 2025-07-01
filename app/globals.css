@@ -91,3 +91,18 @@ html {
     transform: translateX(-50%);
   }
 }
+
+@keyframes logo-pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-logo-pop {
+  animation: logo-pop 1.2s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+}
