@@ -63,7 +63,7 @@ export default function ContactSection() {
     };
 
     return (
-        <section className="w-full max-w-7xl mx-auto px-2 sm:px-8 min-h-screen flex items-center mb-24" data-aos="fade-up">
+        <section className="w-full max-w-6xl mx-auto px-2 sm:px-8 min-h-screen flex items-center mb-24" data-aos="fade-up">
             <div className="bg-transparent flex flex-col md:flex-row gap-0 md:gap-0 border-t border-white/20">
                 {/* Kiri */}
                 <div className="w-full md:w-1/2 flex flex-col gap-8 py-12 pr-0 md:pr-12">

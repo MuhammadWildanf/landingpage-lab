@@ -3,8 +3,8 @@ import { FaBehance, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer: React.FC = () => {
     return (
-        <footer className="w-full text-[#EAEAEA] font-mono pt-12 pb-8">
-            <div className="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col items-center md:flex-row md:items-stretch md:justify-between gap-y-8 md:gap-y-0 md:gap-x-10">
+        <footer className="w-full text-[#EAEAEA] font-mono pt-12 pb-0">
+            <div className="max-w-6xl mx-auto px-4 sm:px-8 flex flex-col items-center md:flex-row md:items-stretch md:justify-between gap-y-8 md:gap-y-0 md:gap-x-10">
                 {/* Left - Socials */}
                 <div className="flex flex-col items-center md:items-start mb-0 md:mb-0">
                     <div className="flex items-center gap-6 text-2xl mb-2">
@@ -34,14 +34,14 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Copyright di bawah grid utama */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-8 mt-8 text-center md:text-left">
+            <div className="max-w-6xl mx-auto px-4 sm:px-8 mt-8 text-center md:text-left">
                 <p className="text-xs">
                     © Copyright 2025. IMAJIWA LAB. All rights reserved.
                 </p>
             </div>
 
             {/* Bottom Gradient Text */}
-            <div className="w-full mt-10 text-2xl sm:text-4xl md:text-7xl font-bebas-neue font-bold leading-tight tracking-tight text-center">
+            <div className="w-full mt-10 text-6xl sm:text-4xl md:text-7xl font-bebas-neue font-bold leading-tight tracking-tight text-center">
                 <span className="bg-gradient-to-r from-[#CED4D4] via-[#CBAB79] to-[#CD1DA6] text-transparent bg-clip-text">
                     LET’S WORK TOGETHER
                 </span>
