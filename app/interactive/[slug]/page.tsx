@@ -60,10 +60,10 @@ export default async function ProductDetailPage(props: any) {
   } catch { }
 
   return (
-    <div className="max-w-3xl mx-auto py-12 px-4 text-white font-mono">
+    <div className="max-w-6xl mx-auto py-12 px-4 text-white font-mono">
       <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
 
-      <div className="text-sm pb-5">
+      <div className="text-base pb-5">
         {product.category?.name}
       </div>
 
@@ -79,7 +79,7 @@ export default async function ProductDetailPage(props: any) {
       {/* Gallery Section */}
       {Array.isArray(product.media) && product.media.length > 0 && (
         <>
-          <h2 className="font-bold mb-2 text-lg">Gallery</h2>
+          <h2 className="font-bold mb-2 text-base">Gallery</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
             {product.media.map((media: { url: string }, idx: number) => (
               <div key={idx} className="w-full">
@@ -106,11 +106,11 @@ export default async function ProductDetailPage(props: any) {
         </>
       )}
 
-      <p className="mb-4 whitespace-pre-line">{product.description}</p>
+      <p className="mb-4 whitespace-pre-line text-lg">{product.description}</p>
       {Object.keys(specifications).length > 0 && (
         <div className="mb-4">
-          <h2 className="font-bold mb-2">Specifications</h2>
-          <ul className="list-disc list-inside text-sm">
+          <h2 className="font-bold mb-2 text-lg">Specifications</h2>
+          <ul className="list-disc list-inside text-base">
             {Object.entries(specifications).map(([key, value]) => (
               <li key={key}><b>{key}:</b> {String(value)}</li>
             ))}
@@ -119,8 +119,8 @@ export default async function ProductDetailPage(props: any) {
       )}
       {Object.keys(requirements).length > 0 && (
         <div className="mb-4">
-          <h2 className="font-bold mb-2">Requirements</h2>
-          <ul className="list-disc list-inside text-sm">
+          <h2 className="font-bold mb-2 text-lg">Requirements</h2>
+          <ul className="list-disc list-inside text-base">
             {Object.entries(requirements).map(([key, value]) => (
               <li key={key}><b>{key}:</b> {String(value)}</li>
             ))}

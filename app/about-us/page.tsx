@@ -33,7 +33,7 @@ export default function About() {
                     </div>
 
                     {/* Deskripsi */}
-                    <div className="w-full text-left font-mono text-sm leading-relaxed tracking-wide space-y-6 text-justify">
+                    <div className="w-full text-left font-mono text-xl leading-relaxed tracking-wide space-y-6 text-justify">
                         <p>
                             <span className="font-bold text-white">At Imajiwa Lab</span>, we&apos;re not just creators&mdash;we&apos;re a bunch of{" "}
                             <span className="text-[#EEFF41]">curious geeks</span>,{" "}

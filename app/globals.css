@@ -64,3 +64,26 @@ html {
     scrollbar-width: none;
   }
 }
+
+/* Marquee animation for client logos */
+.marquee {
+  position: relative;
+  width: 100%;
+  height: 64px;
+  overflow: hidden;
+}
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  width: max-content;
+  animation: marquee-scroll 30s linear infinite;
+}
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
