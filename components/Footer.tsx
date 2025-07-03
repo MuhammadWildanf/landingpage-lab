@@ -9,8 +9,8 @@ const Footer: React.FC = () => {
                 <div className="flex flex-col items-center md:items-start mb-0 md:mb-0">
                     <div className="flex items-center gap-6 text-2xl mb-2">
                         <a href="#" aria-label="Behance" className="hover:opacity-70"><FaBehance /></a>
-                        <a href="#" aria-label="Instagram" className="hover:opacity-70"><FaInstagram /></a>
-                        <a href="#" aria-label="LinkedIn" className="hover:opacity-70"><FaLinkedin /></a>
+                        <a href="https://www.instagram.com/imajiwa.lab/" aria-label="Instagram" className="hover:opacity-70"><FaInstagram /></a>
+                        {<a href="#" aria-label="LinkedIn" className="hover:opacity-70"><FaLinkedin /></a>}
                     </div>
                 </div>
 
@@ -23,8 +23,8 @@ const Footer: React.FC = () => {
                 {/* Right - Contact Info */}
                 <div className="flex flex-col items-center text-center md:items-end md:text-right text-xs sm:text-sm gap-1">
                     <p className="font-bold">Contact</p>
-                    <p>lab@imajiwa.com</p>
-                    <p>+62821-0000-0000</p>
+                    <p>visual.lab@imajiwa.com</p>
+                    <p>0217181433</p>
                     <p>
                         Jakarta Selatan,<br />
                         DKI Jakarta 12730,<br />

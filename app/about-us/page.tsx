@@ -19,7 +19,7 @@ export default function About() {
                 </h2>
                 <section
                     className="flex flex-col items-start gap-6 w-full"
-                    data-aos="fade-left"
+
                 >
                     {/* Gambar Tim - full width di atas */}
                     <div className="w-full relative">
@@ -29,6 +29,7 @@ export default function About() {
                             width={1200}
                             height={700}
                             className="w-full object-cover"
+                            data-aos="fade-up"
                         />
                     </div>
 

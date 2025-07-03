@@ -82,25 +82,30 @@ export default function ContactSection() {
                             <div>
                                 <div className="mb-1 text-white/80">Social :</div>
                                 <div className="flex gap-2">
-                                    <a href="#" className="border border-white rounded-full p-2 flex items-center justify-center hover:bg-[#E9FF4E]/20 transition"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="#fff" strokeWidth="2" /><circle cx="12" cy="12" r="3" stroke="#fff" strokeWidth="2" /><circle cx="17" cy="7" r="1.5" fill="#fff" /></svg></a>
-                                    <a href="#" className="border border-white rounded-full p-2 flex items-center justify-center hover:bg-[#E9FF4E]/20 transition"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#fff" strokeWidth="2" /><circle cx="12" cy="12" r="4" stroke="#fff" strokeWidth="2" /><rect x="16.5" y="6.5" width="2" height="2" rx="1" fill="#fff" /></svg></a>
-                                    <a href="#" className="border border-white rounded-full p-2 flex items-center justify-center hover:bg-[#E9FF4E]/20 transition"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#fff" strokeWidth="2" /><path stroke="#fff" strokeWidth="2" d="M8 12c1.5 2 6.5 2 8 0" /><path stroke="#fff" strokeWidth="2" d="M9 9h.01M15 9h.01" /></svg></a>
+                                    {<a href="#" className="border border-white rounded-full p-2 flex items-center justify-center hover:bg-[#E9FF4E]/20 transition"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="#fff" strokeWidth="2" /><circle cx="12" cy="12" r="3" stroke="#fff" strokeWidth="2" /><circle cx="17" cy="7" r="1.5" fill="#fff" /></svg></a>}
+                                    <a href="https://www.instagram.com/imajiwa.lab/" className="border border-white rounded-full p-2 flex items-center justify-center hover:bg-[#E9FF4E]/20 transition"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#fff" strokeWidth="2" /><circle cx="12" cy="12" r="4" stroke="#fff" strokeWidth="2" /><rect x="16.5" y="6.5" width="2" height="2" rx="1" fill="#fff" /></svg></a>
+                                    {<a href="#" className="border border-white rounded-full p-2 flex items-center justify-center hover:bg-[#E9FF4E]/20 transition"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#fff" strokeWidth="2" /><path stroke="#fff" strokeWidth="2" d="M8 12c1.5 2 6.5 2 8 0" /><path stroke="#fff" strokeWidth="2" d="M9 9h.01M15 9h.01" /></svg></a>}
                                 </div>
                             </div>
                         </div>
                         <div className="flex flex-wrap gap-6">
                             <div>
                                 <div className="mb-1 text-white/80">Address :</div>
-                                <div className="flex items-center gap-2 border border-white rounded-full px-4 py-2 text-white">
+                                <a
+                                    href="https://www.google.com/maps?q=Jl.+Kemang+Dalam+IV+No.K24,+RT.3%2FRW.3,+Bangka,+Kec.+Mampang+Prpt.,+Kota+Jakarta+Selatan,+Daerah+Khusus+Ibukota+Jakarta+12730,+Indonesia"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 border border-white rounded-full px-4 py-2 text-white hover:bg-white/10 transition"
+                                >
                                     <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path stroke="#fff" strokeWidth="2" d="M12 21c-4-4-7-7.5-7-11A7 7 0 0 1 19 10c0 3.5-3 7-7 11Z" /><circle cx="12" cy="10" r="3" stroke="#fff" strokeWidth="2" /></svg>
                                     IMAJIWA Creative Studio
-                                </div>
+                                </a>
                             </div>
                             <div>
                                 <div className="mb-1 text-white/80">Call Us :</div>
                                 <div className="flex items-center gap-2 border border-white rounded-full px-4 py-2 text-white">
                                     <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path stroke="#fff" strokeWidth="2" d="M22 16.92v3a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.13.96.37 1.89.72 2.78a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c.89.35 1.82.59 2.78.72A2 2 0 0 1 22 16.92Z" /></svg>
-                                    +62 823-4567-900
+                                    0217181433
                                 </div>
                             </div>
                         </div>
