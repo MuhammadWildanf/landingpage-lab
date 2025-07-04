@@ -5,22 +5,21 @@ export async function POST(request: Request) {
   const { name, email, phone, message } = await request.json();
 
   // Konfigurasi Nodemailer
-  // GANTI DENGAN KREDENSIAL ASLI KAMU ATAU LAYANAN EMAIL LAIN
   const transporter = nodemailer.createTransport({
-    host: "smtp.your-email-provider.com", // e.g., smtp.gmail.com for Gmail
+    host: "smtp.gmail.com", 
     port: 587,
-    secure: false, // true for 465, false for other ports
+    secure: false, 
     auth: {
-      user: "your-email@example.com", // GANTI DENGAN EMAIL KAMU
-      pass: "your-email-password", // GANTI DENGAN PASSWORD/APP PASSWORD KAMU
+      user: "visual.lab@imajiwa.id", 
+      pass: "visualab01", 
     },
   });
 
   try {
     await transporter.sendMail({
-      from: `"${name}" <${email}>`, // Alamat pengirim (optional, bisa email kamu)
-      to: "visual.lab@imajiwa.id", // GANTI DENGAN ALAMAT EMAIL PENERIMA ASLI
-      subject: `New Contact Form Submission from ${name}`,
+      from: `"${name}" <${email}>`, 
+      to: "visual.lab@imajiwa.id", 
+      subject: `Contact Form Submission from ${name}`,
       html: `
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>

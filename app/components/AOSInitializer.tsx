@@ -9,7 +9,7 @@ export default function AOSInitializer() {
         AOS.init({
             duration: 1000, // Durasi animasi dalam ms
             once: true, // Animasi hanya berjalan sekali saat di-scroll ke view
-            easing: 'ease-out', // Jenis easing animasi
+            // easing: 'ease-out', // Jenis easing animasi
         });
     }, []);
 

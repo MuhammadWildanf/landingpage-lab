@@ -53,26 +53,25 @@ export default function Interactive() {
         : products;
 
     return (
-        <div className="relative min-h-screen ">
+        <div className="relative min-h-screen px-2 sm:px-4">
             <CanvasCursor />
             <div className="absolute inset-0 -z-10"><Particles /></div>
             <AOSInitializer />
             {/* Judul Section */}
             <div className="pt-20 pb-8" data-aos="fade-up">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-wider text-center mb-8">
-                    <span className="text-white">OUR </span>
-                    <span className="bg-gradient-to-r from-[#CED4D4] via-[#CBAB79] to-[#CD1DA6] bg-clip-text text-transparent">PRODUCT</span>
+                    <span className="bg-gradient-to-r from-[#CED4D4] via-[#CBAB79] to-[#CD1DA6] bg-clip-text text-transparent">INTERACTIVE</span>
                 </h1>
             </div>
             {/* Container utama */}
-            <div className="w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-6xl mx-2 sm:mx-auto rounded-3xl bg-[#232323] border border-white/20 shadow-xl px-2 sm:px-4 md:px-8 pt-8 pb-16">
+            <div className="w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-6xl mx-auto rounded-3xl bg-[#232323] border border-white/20 shadow-xl px-4 sm:px-6 md:px-10 pt-8 pb-16">
 
                 {/* Tab Kategori */}
                 <div className="flex justify-center mb-10">
                     <div className="flex gap-2 bg-[#181C1C] rounded-full px-2 py-1 shadow overflow-x-auto max-w-full scrollbar-thin scrollbar-thumb-[#CBAB79]/40 scrollbar-track-transparent">
                         <button
                             className={`px-6 py-2 rounded-full font-semibold transition text-sm md:text-base whitespace-nowrap ${selectedCat === null
-                                ? "bg-[#CBAB79] text-white font-bold"
+                                ? "bg-gradient-to-r from-[#CED4D4] via-[#CBAB79] to-[#CD1DA6] text-white font-bold"
                                 : "bg-transparent text-white hover:bg-[#333]"
                                 }`}
                             onClick={() => setSelectedCat(null)}
@@ -84,7 +83,7 @@ export default function Interactive() {
                             <button
                                 key={cat.id}
                                 className={`px-6 py-2 rounded-full font-semibold transition text-sm md:text-base whitespace-nowrap ${selectedCat === cat.id
-                                    ? "bg-[#CBAB79] text-white font-bold"
+                                    ? "bg-gradient-to-r from-[#CED4D4] via-[#CBAB79] to-[#CD1DA6] text-white font-bold"
                                     : "bg-transparent text-white hover:bg-[#333]"
                                     }`}
                                 onClick={() => setSelectedCat(cat.id)}
@@ -149,7 +148,6 @@ export default function Interactive() {
                     )}
                 </div>
             </div>
-
         </div>
     );
 }
