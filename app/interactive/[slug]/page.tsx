@@ -63,9 +63,12 @@ export default async function ProductDetailPage(props: any) {
     <div className="max-w-6xl mx-auto py-12 px-4 text-white font-mono">
       <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
 
-      <div className="text-base pb-5">
-        {product.category?.name}
-      </div>
+      {product && (
+        <div className="text-base pb-5">
+          {product.category?.name}
+          {product.subcategory?.name && ` - ${product.subcategory.name}`}
+        </div>
+      )}
 
       {/* Media utama (jika ada, tetap tampilkan di atas) */}
       {mediaUrl && (
