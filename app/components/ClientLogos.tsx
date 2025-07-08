@@ -46,8 +46,13 @@ export default function ClientLogos() {
                             </div>
                         ))}
                     </div>
+
                 </div>
             </div>
+            <div className="absolute top-0 bottom-0 left-0 w-1/3 bg-[linear-gradient(to_right,_#101010_24%,_#00000000_100%)] pointer-events-none"></div>
+
+            <div className="absolute top-0 bottom-0 right-0 w-1/3 bg-[linear-gradient(to_left,_#101010_24%,_#00000000_100%)] pointer-events-none"></div>
+
         </section>
     );
 } 
