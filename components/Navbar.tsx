@@ -37,7 +37,7 @@ export default function Navbar() {
         <>
             <nav className="sticky top-4 z-50 px-4 sm:px-8">
                 <div
-                    className={`w-full max-w-6xl mx-auto flex items-center justify-between gap-x-10 h-16 text-sm font-mono text-white rounded-full shadow-md transition-all px-6 sm:px-10
+                    className={`w-full max-w-6xl mx-auto flex items-center justify-between gap-x-10 h-16 text-sm font-mono text-white rounded-[15px] shadow-md transition-all px-6 sm:px-10
                     ${isScrolled ? 'backdrop-blur-md' : 'bg-gradient-to-r from-[#2F2F2F] to-[#4A4A4A]'}
                     `}
                     style={isScrolled ? { backgroundColor: 'rgba(217,217,217,0.3)' } : {}}

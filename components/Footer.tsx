@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
             {/* Bottom Gradient Text */}
             <div className="w-full mt-10 text-6xl sm:text-4xl md:text-7xl font-bebas-neue font-bold leading-tight tracking-tight text-center">
                 <span className="bg-gradient-to-r from-[#CED4D4] via-[#CBAB79] to-[#CD1DA6] text-transparent bg-clip-text">
-                    LET’S WORK TOGETHER
+                    LET’S CONNECT & COLLABORATE
                 </span>
             </div>
         </footer>

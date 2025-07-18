@@ -105,7 +105,7 @@ export default function LabCards() {
             imageAlt: "L",
             backMediaSrc: "https://hybrid-website.ams3.cdn.digitaloceanspaces.com/Home/1-3.mp4", // contoh: back pakai video
             backMediaAlt: "Demo Video",
-            tags: ["Immersive ", "Interactive", "Virtual Production"]
+            tags: ["EXPERIENCE"]
         },
         {
             title: "LOREM IPSUM",
@@ -113,7 +113,7 @@ export default function LabCards() {
             imageAlt: "A",
             backMediaSrc: "https://hybrid-website.ams3.cdn.digitaloceanspaces.com/Home/3-3cut.mp4", // contoh: back pakai video
             backMediaAlt: "Demo Video",
-            tags: ["AR/VR/XR", "AI & Generative Systems", "Motion & Real-Time Visualization"]
+            tags: ["INTERACTIVE"]
         },
         {
             title: "LOREM IPSUM",
@@ -121,7 +121,7 @@ export default function LabCards() {
             imageAlt: "B",
             backMediaSrc: "https://hybrid-website.ams3.cdn.digitaloceanspaces.com/Home/3-3cut.mp4https://hybrid-website.ams3.cdn.digitaloceanspaces.com/Home/2-3.mp4", // contoh: back pakai video
             backMediaAlt: "Demo Video",
-            tags: ["Custom Software", "Custom Hardware"]
+            tags: ["DEVELOPMENT"]
         }
     ];
 
